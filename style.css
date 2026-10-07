@@ -4,339 +4,560 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   background:
-    radial-gradient(circle at top, #18233d, #070b14 70%);
+    radial-gradient(circle at top, #182b44 0%, #07101d 55%, #03070d 100%);
   color: white;
-  min-height: 100vh;
+  overflow-x: hidden;
 }
 
+
+/* HEADER */
+
 header {
-  text-align: center;
-  padding: 25px 15px 15px;
-  border-bottom: 1px solid #28334e;
+  width: 100%;
+  padding: 18px 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+
+  position: relative;
+  z-index: 10;
 }
 
 header h1 {
   margin: 0;
-  font-size: clamp(24px, 4vw, 42px);
+  font-size: clamp(18px, 3vw, 30px);
+  letter-spacing: 1px;
 }
 
-header p {
-  color: #aeb9cf;
-  margin: 8px 0 18px;
-}
-
-.scores {
+.scoreboard {
   display: flex;
-  justify-content: center;
-  gap: 35px;
-  font-size: 18px;
+  gap: 20px;
+  font-size: 17px;
 }
 
-.scores span:first-child b {
-  color: #48a8ff;
+.scoreboard span {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
 }
 
-.scores span:last-child b {
+.scoreboard b {
   color: #55e37d;
 }
 
-main {
-  width: 100%;
-}
+
+/* SCREENS */
 
 .screen {
   display: none;
-  padding: 35px 15px;
+  min-height: calc(100vh - 80px);
+  padding: 40px 20px;
 }
 
 .screen.active {
   display: block;
 }
 
-.card {
-  max-width: 800px;
-  margin: auto;
-  background: rgba(20, 28, 47, 0.95);
-  border: 1px solid #35415e;
-  border-radius: 18px;
-  padding: 35px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+
+/* QUIZ */
+
+#quizScreen {
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
-.tag {
-  display: inline-block;
-  background: #24314f;
-  color: #6db9ff;
-  padding: 7px 12px;
-  border-radius: 20px;
-  font-size: 12px;
+#quizScreen.active {
+  display: flex;
+}
+
+.quiz-card {
+  width: min(850px, 95vw);
+  padding: 40px;
+
+  background: rgba(12, 24, 40, 0.94);
+
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.5);
+
+  backdrop-filter: blur(10px);
+}
+
+.question-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+
+  color: #8ea8c7;
   font-weight: bold;
 }
 
-.card h2 {
-  font-size: 30px;
+.hsc-tag {
+  padding: 6px 10px;
+  background: #245bff;
+  border-radius: 6px;
+  color: white;
+  font-size: 12px;
 }
 
-#question {
-  font-size: 21px;
-  line-height: 1.5;
-  min-height: 80px;
+.quiz-card h2 {
+  font-size: clamp(22px, 4vw, 34px);
+  line-height: 1.35;
+  margin-bottom: 20px;
+}
+
+.instruction {
+  color: #9eb1c9;
 }
 
 textarea {
   width: 100%;
-  min-height: 140px;
+  min-height: 150px;
+
+  margin-top: 15px;
+  padding: 16px;
+
   resize: vertical;
-  background: #0b101c;
+
+  background: #07111e;
   color: white;
-  border: 2px solid #34405c;
-  border-radius: 12px;
-  padding: 15px;
-  font-size: 17px;
+
+  border: 2px solid #233b58;
+  border-radius: 10px;
+
+  font-size: 18px;
+  font-family: inherit;
+
   outline: none;
 }
 
 textarea:focus {
-  border-color: #4da8ff;
+  border-color: #3d77ff;
+  box-shadow: 0 0 15px rgba(61,119,255,0.25);
 }
 
 button {
-  width: 100%;
-  margin-top: 18px;
-  padding: 15px;
   border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #1688ff, #6b5cff);
+  border-radius: 9px;
+
+  padding: 13px 20px;
+
+  margin-top: 16px;
+
+  background: #245bff;
   color: white;
+
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
+
   cursor: pointer;
+
+  transition:
+    transform 0.15s,
+    background 0.15s,
+    box-shadow 0.15s;
 }
 
 button:hover {
-  filter: brightness(1.15);
+  background: #3e70ff;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(36,91,255,0.35);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 #feedback {
-  min-height: 30px;
+  min-height: 25px;
   font-weight: bold;
+  margin-top: 18px;
+}
+
+.topic-box {
+  margin-top: 25px;
+  padding: 15px;
+
+  border-left: 4px solid #55e37d;
+
+  background: rgba(85,227,125,0.07);
+
+  color: #a9bdce;
+
   line-height: 1.5;
 }
 
+
+/* AFL HEADER */
+
 .afl-header {
-  max-width: 1100px;
-  margin: auto;
+  max-width: 1250px;
+  margin: 0 auto 20px;
+
   display: flex;
   justify-content: space-between;
-  padding: 10px 5px 18px;
-  font-size: 18px;
-}
-
-.afl-header span {
-  margin-left: 20px;
-  color: #aeb9cf;
-}
-
-.game-wrapper {
-  max-width: 1100px;
-  margin: auto;
-}
-
-.field {
-  position: relative;
-  width: 100%;
-  height: min(70vh, 650px);
-  min-height: 500px;
-  overflow: hidden;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 2px,
-      transparent 2px,
-      transparent 40px
-    ),
-    linear-gradient(90deg, #187d39, #24994a, #187d39);
-
-  border: 8px solid white;
-  border-radius: 48% / 10%;
-  box-shadow:
-    inset 0 0 50px rgba(0,0,0,0.25),
-    0 20px 50px rgba(0,0,0,0.4);
-}
-
-.field::before,
-.field::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 65%;
-  height: 30%;
-  border: 3px solid rgba(255,255,255,0.75);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.field::before {
-  top: -12%;
-}
-
-.field::after {
-  bottom: -12%;
-}
-
-.centre-circle {
-  position: absolute;
-  width: 110px;
-  height: 110px;
-  border: 3px solid white;
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.goal {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 55px;
-  border: 4px solid white;
-}
-
-.goal-top {
-  top: -8px;
-}
-
-.goal-bottom {
-  bottom: -8px;
-}
-
-.player {
-  position: absolute;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: flex;
+  gap: 20px;
   align-items: center;
-  justify-content: center;
-  font-size: 8px;
-  font-weight: bold;
-  z-index: 5;
-  transition: transform 0.08s linear;
 }
 
-.user-player {
-  background: #198cff;
-  border: 3px solid white;
-  box-shadow: 0 0 20px #198cff;
-  left: 50%;
-  top: 70%;
+.afl-header h2 {
+  margin: 0;
 }
 
-.cpu {
-  background: #e93232;
-  border: 3px solid white;
-  box-shadow: 0 0 15px rgba(255,0,0,0.5);
-}
-
-.cpu1 {
-  left: 43%;
-  top: 52%;
-}
-
-.cpu2 {
-  left: 59%;
-  top: 45%;
-}
-
-.teammate {
-  background: #ffc400;
-  border: 3px solid white;
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 7px;
-  font-weight: bold;
-}
-
-.teammate1 {
-  left: 68%;
-  top: 30%;
-}
-
-.ball {
-  position: absolute;
-  width: 15px;
-  height: 24px;
-  border-radius: 50%;
-  background: #c77a35;
-  border: 2px solid #633914;
-  left: 52%;
-  top: 67%;
-  z-index: 6;
-  transform: rotate(-25deg);
+.afl-header p {
+  margin: 7px 0 0;
+  color: #a8bad0;
 }
 
 .controls {
-  margin-top: 15px;
-  background: rgba(10,15,25,0.92);
-  border: 1px solid #33405b;
-  border-radius: 14px;
-  padding: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-end;
 }
 
-.controls h3 {
-  margin: 0 0 5px;
-}
-
-.control-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  margin-top: 15px;
-}
-
-.control-grid div {
-  background: #1a2337;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
+.controls span {
+  background: rgba(255,255,255,0.08);
+  padding: 7px 9px;
+  border-radius: 6px;
   font-size: 12px;
 }
 
-.control-grid b {
-  color: #6db9ff;
+
+/* AFL FIELD */
+
+.game-wrapper {
+  width: min(900px, 95vw);
+  margin: auto;
 }
 
-.status {
-  color: #ffd34d;
+#field {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 0.62 / 1;
+
+  max-height: 75vh;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #25853c 0%,
+      #197535 45%,
+      #0e5828 100%
+    );
+
+  border: 8px solid white;
+
+  border-radius: 48%;
+
+  box-shadow:
+    inset 0 0 70px rgba(0,0,0,0.3),
+    0 25px 60px rgba(0,0,0,0.5);
+}
+
+
+/* FIELD MARKINGS */
+
+#field::before {
+  content: "";
+
+  position: absolute;
+
+  left: 8%;
+  right: 8%;
+  top: 4%;
+  bottom: 4%;
+
+  border: 2px solid rgba(255,255,255,0.55);
+
+  border-radius: 48%;
+}
+
+#field::after {
+  content: "";
+
+  position: absolute;
+
+  left: 20%;
+  right: 20%;
+  top: 8%;
+  bottom: 8%;
+
+  border: 2px solid rgba(255,255,255,0.45);
+
+  border-radius: 48%;
+}
+
+
+/* CENTRE */
+
+.centre-circle {
+  position: absolute;
+
+  width: 22%;
+  aspect-ratio: 1;
+
+  left: 39%;
+  top: 39%;
+
+  border: 3px solid rgba(255,255,255,0.65);
+
+  border-radius: 50%;
+}
+
+.centre-line {
+  position: absolute;
+
+  left: 10%;
+  right: 10%;
+
+  top: 50%;
+
+  border-top: 2px dashed rgba(255,255,255,0.45);
+}
+
+
+/* GOALS */
+
+.goal {
+  position: absolute;
+
+  left: 30%;
+  width: 40%;
+
+  display: flex;
+  justify-content: space-between;
+
+  z-index: 2;
+}
+
+.goal-top {
+  top: 4%;
+}
+
+.goal-bottom {
+  bottom: 4%;
+}
+
+.goal-post {
+  width: 5px;
+  height: 55px;
+
+  background: white;
+
+  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+.goal-post.centre {
+  height: 75px;
+}
+
+
+/* PLAYERS */
+
+.player,
+.defender,
+.teammate {
+  position: absolute;
+
+  width: 38px;
+  height: 38px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 7px;
+  font-weight: bold;
+
+  z-index: 6;
+
+  transition:
+    box-shadow 0.15s,
+    transform 0.1s;
+}
+
+.player {
+  background: #1d5cff;
+
+  border: 3px solid white;
+
+  box-shadow:
+    0 0 0 4px rgba(29,92,255,0.25),
+    0 0 20px rgba(29,92,255,0.8);
+}
+
+.player span {
+  color: white;
+}
+
+.defender {
+  background: #e83939;
+
+  border: 2px solid #ffaaaa;
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,0.5);
+}
+
+.teammate {
+  background: #ffd52d;
+
+  color: #162000;
+
+  border: 2px solid white;
+
+  box-shadow:
+    0 0 12px rgba(255,213,45,0.6);
+}
+
+
+/* BALL */
+
+#ball {
+  position: absolute;
+
+  z-index: 8;
+
+  font-size: 22px;
+
+  pointer-events: none;
+
+  transition: left 0.15s linear, top 0.15s linear;
+}
+
+
+/* GAME INFO */
+
+.game-info {
+  width: min(900px, 95vw);
+  margin: 20px auto 0;
+}
+
+#gameStatus {
+  padding: 14px;
+
+  border-radius: 10px;
+
+  background: rgba(0,0,0,0.4);
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  text-align: center;
+
   font-weight: bold;
 }
 
+.decision-panel {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.decision-panel button {
+  min-width: 150px;
+}
+
+
+/* RESULTS */
+
+#resultScreen {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#resultScreen.active {
+  display: flex;
+}
+
+.result-card {
+  width: min(700px, 95vw);
+
+  padding: 45px;
+
+  background: rgba(12,24,40,0.95);
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.result-card h2 {
+  font-size: 32px;
+}
+
+#finalResult {
+  font-size: 22px;
+  line-height: 1.8;
+}
+
+#finalResult b {
+  color: #55e37d;
+}
+
+.result-message {
+  margin-top: 20px;
+  color: #9eb1c9;
+  line-height: 1.5;
+}
+
+
+/* MOBILE */
+
 @media (max-width: 700px) {
-  .card {
-    padding: 22px;
+
+  header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
   }
 
-  .field {
-    min-height: 430px;
-  }
-
-  .control-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .quiz-card {
+    padding: 25px;
   }
 
   .afl-header {
-    font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .controls {
+    justify-content: flex-start;
+  }
+
+  #field {
+    width: 92vw;
+  }
+
+  .decision-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .decision-panel button {
+    min-width: 0;
   }
 }
