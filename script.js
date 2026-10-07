@@ -1,342 +1,362 @@
-* {
-  box-sizing: border-box;
-}
+const questions = [
+  {
+    q: "A venue is preparing for a production. Explain why a risk assessment should be completed before technical work begins.",
+    answers: ["risk assessment", "hazard", "risk", "safety"]
+  },
+  {
+    q: "A three-phase lighting system needs to distribute electrical load evenly. What is the purpose of balancing the phases?",
+    answers: ["power", "distributed", "even", "load"]
+  },
+  {
+    q: "A customer asks a venue worker, 'Could you explain the different seating options?' What type of question is this?",
+    answers: ["open"]
+  },
+  {
+    q: "A production needs a lantern that can produce a broad, relatively soft-edged beam. Which lantern would be suitable?",
+    answers: ["fresnel"]
+  },
+  {
+    q: "A technician needs to send one video source to several destinations. What type of device could be used to distribute the video signal?",
+    answers: ["distribution amplifier", "vda"]
+  },
+  {
+    q: "A microphone produces a signal that is too weak at the mixer. Which mixer control should normally be adjusted first to establish an appropriate input level?",
+    answers: ["gain", "input gain"]
+  },
+  {
+    q: "A video is displayed with the wrong proportions. Which setting should be checked first?",
+    answers: ["aspect ratio"]
+  },
+  {
+    q: "Explain one reason why a dynamic microphone may be appropriate for a loud live performance.",
+    answers: ["rugged", "loud", "durable", "live"]
+  },
+  {
+    q: "A new scenic element is introduced during rehearsal. Which lighting role would decide how it should be incorporated into the lighting design?",
+    answers: ["lighting designer"]
+  },
+  {
+    q: "A cable creates a trip hazard in a busy work area. Give one control that physically reduces the hazard.",
+    answers: ["cable cover", "cable ramp", "cover"]
+  },
+  {
+    q: "What is the main purpose of a safety chain when suspending a lighting fixture?",
+    answers: ["backup", "prevent", "fall"]
+  },
+  {
+    q: "What is the difference between FOH audio and monitor audio?",
+    answers: ["audience", "performer", "performers", "foldback", "monitor"]
+  }
+];
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at top, #18233d, #070b14 70%);
-  color: white;
-  min-height: 100vh;
-}
+let questionIndex = 0;
+let entScore = 0;
+let aflScore = 0;
 
-header {
-  text-align: center;
-  padding: 25px 15px 15px;
-  border-bottom: 1px solid #28334e;
-}
+const quizScreen = document.getElementById("quizScreen");
+const aflScreen = document.getElementById("aflScreen");
+const resultScreen = document.getElementById("resultScreen");
 
-header h1 {
-  margin: 0;
-  font-size: clamp(24px, 4vw, 42px);
-}
+const questionNumber = document.getElementById("questionNumber");
+const questionText = document.getElementById("question");
+const answerBox = document.getElementById("answer");
+const feedback = document.getElementById("feedback");
 
-header p {
-  color: #aeb9cf;
-  margin: 8px 0 18px;
-}
+const player = document.getElementById("player");
+const field = document.getElementById("field");
+const ball = document.getElementById("ball");
 
-.scores {
-  display: flex;
-  justify-content: center;
-  gap: 35px;
-  font-size: 18px;
-}
+let keys = {};
+let gameActive = false;
+let hasPossession = true;
+let lastTime = performance.now();
 
-.scores span:first-child b {
-  color: #48a8ff;
-}
+let playerX = 50;
+let playerY = 70;
 
-.scores span:last-child b {
-  color: #55e37d;
-}
+let cpuX1 = 43;
+let cpuY1 = 52;
 
-main {
-  width: 100%;
-}
+let cpuX2 = 59;
+let cpuY2 = 45;
 
-.screen {
-  display: none;
-  padding: 35px 15px;
-}
-
-.screen.active {
-  display: block;
-}
-
-.card {
-  max-width: 800px;
-  margin: auto;
-  background: rgba(20, 28, 47, 0.95);
-  border: 1px solid #35415e;
-  border-radius: 18px;
-  padding: 35px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-}
-
-.tag {
-  display: inline-block;
-  background: #24314f;
-  color: #6db9ff;
-  padding: 7px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.card h2 {
-  font-size: 30px;
-}
-
-#question {
-  font-size: 21px;
-  line-height: 1.5;
-  min-height: 80px;
-}
-
-textarea {
-  width: 100%;
-  min-height: 140px;
-  resize: vertical;
-  background: #0b101c;
-  color: white;
-  border: 2px solid #34405c;
-  border-radius: 12px;
-  padding: 15px;
-  font-size: 17px;
-  outline: none;
-}
-
-textarea:focus {
-  border-color: #4da8ff;
-}
-
-button {
-  width: 100%;
-  margin-top: 18px;
-  padding: 15px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #1688ff, #6b5cff);
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  filter: brightness(1.15);
-}
-
-#feedback {
-  min-height: 30px;
-  font-weight: bold;
-  line-height: 1.5;
-}
-
-.afl-header {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 5px 18px;
-  font-size: 18px;
-}
-
-.afl-header span {
-  margin-left: 20px;
-  color: #aeb9cf;
-}
-
-.game-wrapper {
-  max-width: 1100px;
-  margin: auto;
-}
-
-.field {
-  position: relative;
-  width: 100%;
-  height: min(70vh, 650px);
-  min-height: 500px;
-  overflow: hidden;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 2px,
-      transparent 2px,
-      transparent 40px
-    ),
-    linear-gradient(90deg, #187d39, #24994a, #187d39);
-
-  border: 8px solid white;
-  border-radius: 48% / 10%;
-  box-shadow:
-    inset 0 0 50px rgba(0,0,0,0.25),
-    0 20px 50px rgba(0,0,0,0.4);
-}
-
-.field::before,
-.field::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 65%;
-  height: 30%;
-  border: 3px solid rgba(255,255,255,0.75);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.field::before {
-  top: -12%;
-}
-
-.field::after {
-  bottom: -12%;
-}
-
-.centre-circle {
-  position: absolute;
-  width: 110px;
-  height: 110px;
-  border: 3px solid white;
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.goal {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 55px;
-  border: 4px solid white;
-}
-
-.goal-top {
-  top: -8px;
-}
-
-.goal-bottom {
-  bottom: -8px;
-}
-
-.player {
-  position: absolute;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8px;
-  font-weight: bold;
-  z-index: 5;
-  transition: transform 0.08s linear;
-}
-
-.user-player {
-  background: #198cff;
-  border: 3px solid white;
-  box-shadow: 0 0 20px #198cff;
-  left: 50%;
-  top: 70%;
-}
-
-.cpu {
-  background: #e93232;
-  border: 3px solid white;
-  box-shadow: 0 0 15px rgba(255,0,0,0.5);
-}
-
-.cpu1 {
-  left: 43%;
-  top: 52%;
-}
-
-.cpu2 {
-  left: 59%;
-  top: 45%;
-}
-
-.teammate {
-  background: #ffc400;
-  border: 3px solid white;
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 7px;
-  font-weight: bold;
-}
-
-.teammate1 {
-  left: 68%;
-  top: 30%;
-}
-
-.ball {
-  position: absolute;
-  width: 15px;
-  height: 24px;
-  border-radius: 50%;
-  background: #c77a35;
-  border: 2px solid #633914;
-  left: 52%;
-  top: 67%;
-  z-index: 6;
-  transform: rotate(-25deg);
-}
-
-.controls {
-  margin-top: 15px;
-  background: rgba(10,15,25,0.92);
-  border: 1px solid #33405b;
-  border-radius: 14px;
-  padding: 18px;
-}
-
-.controls h3 {
-  margin: 0 0 5px;
-}
-
-.control-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  margin-top: 15px;
-}
-
-.control-grid div {
-  background: #1a2337;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  font-size: 12px;
-}
-
-.control-grid b {
-  color: #6db9ff;
-}
-
-.status {
-  color: #ffd34d;
-  font-weight: bold;
-}
-
-@media (max-width: 700px) {
-  .card {
-    padding: 22px;
+function loadQuestion() {
+  if (questionIndex >= questions.length) {
+    finishGame();
+    return;
   }
 
-  .field {
-    min-height: 430px;
+  questionNumber.textContent =
+    `Entertainment Question ${questionIndex + 1}`;
+
+  questionText.textContent = questions[questionIndex].q;
+
+  answerBox.value = "";
+  feedback.textContent = "";
+  answerBox.focus();
+}
+
+function checkAnswer() {
+  const response = answerBox.value.toLowerCase().trim();
+
+  if (!response) {
+    feedback.textContent = "Type an answer first.";
+    feedback.style.color = "#ffd34d";
+    return;
   }
 
-  .control-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  const accepted = questions[questionIndex].answers;
 
-  .afl-header {
-    font-size: 14px;
+  const correct = accepted.some(word =>
+    response.includes(word)
+  );
+
+  if (correct) {
+    entScore++;
+    document.getElementById("entScore").textContent = entScore;
+
+    feedback.style.color = "#55e37d";
+    feedback.textContent =
+      "✓ Correct! You have earned an AFL play.";
+
+    setTimeout(startAFL, 900);
+  } else {
+    feedback.style.color = "#ff6868";
+    feedback.textContent =
+      "✗ Not quite. Review the concept and try again.";
   }
 }
+
+document.getElementById("submitBtn").addEventListener("click", checkAnswer);
+
+answerBox.addEventListener("keydown", e => {
+  if (e.key === "Enter" && e.ctrlKey) {
+    checkAnswer();
+  }
+});
+
+function startAFL() {
+  quizScreen.classList.remove("active");
+  aflScreen.classList.add("active");
+
+  gameActive = true;
+  hasPossession = true;
+
+  playerX = 50;
+  playerY = 70;
+
+  updatePositions();
+
+  document.getElementById("playText").textContent =
+    "You're inside attacking range. Read the defenders and make your decision.";
+
+  document.getElementById("gameStatus").textContent =
+    "You have possession — move, evade or dispose of the ball.";
+
+  lastTime = performance.now();
+
+  requestAnimationFrame(gameLoop);
+}
+
+function updatePositions() {
+  player.style.left = `${playerX}%`;
+  player.style.top = `${playerY}%`;
+
+  document.querySelector(".cpu1").style.left = `${cpuX1}%`;
+  document.querySelector(".cpu1").style.top = `${cpuY1}%`;
+
+  document.querySelector(".cpu2").style.left = `${cpuX2}%`;
+  document.querySelector(".cpu2").style.top = `${cpuY2}%`;
+
+  if (hasPossession) {
+    ball.style.left = `calc(${playerX}% + 18px)`;
+    ball.style.top = `calc(${playerY}% + 12px)`;
+  }
+}
+
+function gameLoop(time) {
+  if (!gameActive) return;
+
+  const delta = Math.min((time - lastTime) / 16.67, 2);
+  lastTime = time;
+
+  movePlayer(delta);
+  moveCPU(delta);
+
+  updatePositions();
+
+  checkDefenderPressure();
+
+  requestAnimationFrame(gameLoop);
+}
+
+function movePlayer(delta) {
+  let speed = keys["shift"] ? 0.42 : 0.24;
+
+  if (keys["e"]) {
+    speed = 0.65;
+  }
+
+  if (keys["w"]) playerY -= speed * delta;
+  if (keys["s"]) playerY += speed * delta;
+  if (keys["a"]) playerX -= speed * delta;
+  if (keys["d"]) playerX += speed * delta;
+
+  playerX = Math.max(3, Math.min(97, playerX));
+  playerY = Math.max(3, Math.min(97, playerY));
+}
+
+function moveCPU(delta) {
+  // Defender 1 tracks the player.
+  cpuX1 += (playerX - cpuX1) * 0.012 * delta;
+  cpuY1 += (playerY - cpuY1) * 0.012 * delta;
+
+  // Defender 2 anticipates slightly.
+  const targetX = playerX + (keys["d"] ? 4 : keys["a"] ? -4 : 0);
+  const targetY = playerY - 3;
+
+  cpuX2 += (targetX - cpuX2) * 0.007 * delta;
+  cpuY2 += (targetY - cpuY2) * 0.007 * delta;
+}
+
+function checkDefenderPressure() {
+  const distance = Math.hypot(
+    playerX - cpuX1,
+    playerY - cpuY1
+  );
+
+  if (distance < 5 && !keys["e"]) {
+    document.getElementById("gameStatus").textContent =
+      "⚠️ Defender closing! Sprint or evade!";
+  }
+}
+
+function kick() {
+  if (!gameActive || !hasPossession) return;
+
+  hasPossession = false;
+
+  document.getElementById("gameStatus").textContent =
+    "KICK! The ball is travelling forward...";
+
+  ball.style.left = `${playerX}%`;
+  ball.style.top = `${Math.max(2, playerY - 20)}%`;
+
+  setTimeout(() => {
+    const goodKick =
+      playerY < 55 &&
+      Math.abs(playerX - 50) < 35;
+
+    if (goodKick) {
+      aflScore++;
+      document.getElementById("aflScore").textContent = aflScore;
+
+      document.getElementById("gameStatus").textContent =
+        "🏉 Great kick! Your teammate marks it.";
+
+      nextQuestion();
+    } else {
+      document.getElementById("gameStatus").textContent =
+        "The kick didn't work. The opposition gets the ball.";
+
+      nextQuestion();
+    }
+  }, 800);
+}
+
+function handball() {
+  if (!gameActive || !hasPossession) return;
+
+  hasPossession = false;
+
+  document.getElementById("gameStatus").textContent =
+    "HANDPASS! You release the ball to your teammate.";
+
+  setTimeout(() => {
+    aflScore++;
+
+    document.getElementById("aflScore").textContent = aflScore;
+
+    document.getElementById("gameStatus").textContent =
+      "✓ Clean handball! Your teammate keeps possession.";
+
+    nextQuestion();
+  }, 700);
+}
+
+function leadKick() {
+  if (!gameActive || !hasPossession) return;
+
+  hasPossession = false;
+
+  document.getElementById("gameStatus").textContent =
+    "LEAD KICK! You kick into space for a teammate.";
+
+  setTimeout(() => {
+    aflScore++;
+
+    document.getElementById("aflScore").textContent = aflScore;
+
+    document.getElementById("gameStatus").textContent =
+      "✓ Your teammate runs onto it.";
+
+    nextQuestion();
+  }, 700);
+}
+
+function evade() {
+  if (!gameActive) return;
+
+  playerX += keys["d"] ? 7 : keys["a"] ? -7 : 7;
+
+  playerX = Math.max(3, Math.min(97, playerX));
+
+  document.getElementById("gameStatus").textContent =
+    "💨 EVASION! You burst away from the defender.";
+}
+
+function nextQuestion() {
+  gameActive = false;
+  questionIndex++;
+
+  setTimeout(() => {
+    aflScreen.classList.remove("active");
+    quizScreen.classList.add("active");
+
+    loadQuestion();
+  }, 1300);
+}
+
+function finishGame() {
+  quizScreen.classList.remove("active");
+  aflScreen.classList.remove("active");
+  resultScreen.classList.add("active");
+
+  document.getElementById("finalResult").innerHTML =
+    `Entertainment score: <b>${entScore}</b><br>
+     AFL score: <b>${aflScore}</b><br><br>
+     You completed the HSC Entertainment × AFL challenge!`;
+}
+
+document.addEventListener("keydown", e => {
+  const key = e.key.toLowerCase();
+
+  if (
+    ["w", "a", "s", "d", "shift", "e", "k", "h", "l"].includes(key)
+  ) {
+    e.preventDefault();
+  }
+
+  keys[key] = true;
+
+  if (key === "k") kick();
+  if (key === "h") handball();
+  if (key === "l") leadKick();
+  if (key === "e") evade();
+});
+
+document.addEventListener("keyup", e => {
+  keys[e.key.toLowerCase()] = false;
+});
+
+loadQuestion();
