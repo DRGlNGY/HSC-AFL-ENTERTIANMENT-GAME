@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HSC Entertainment × AFL Challenge</title>
+  <title>Entertainment × AFL HSC Challenge</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <header>
-    <h1>🎬 HSC ENTERTAINMENT × 🏉 AFL</h1>
-    <div class="scoreboard">
+    <h1>🏉 ENTERTAINMENT × AFL</h1>
+    <p>HSC Technical Crew Challenge</p>
+
+    <div class="scores">
       <span>Entertainment: <b id="entScore">0</b></span>
       <span>AFL: <b id="aflScore">0</b></span>
     </div>
@@ -20,20 +22,13 @@
   <!-- ENTERTAINMENT QUIZ -->
   <main id="quizScreen" class="screen active">
 
-    <section class="quiz-card">
+    <div class="quiz-card">
 
-      <div class="question-top">
-        <span id="questionNumber">Entertainment Question 1</span>
-        <span class="hsc-tag">HSC STYLE</span>
+      <div class="question-label" id="questionNumber">
+        Entertainment Question 1
       </div>
 
-      <h2 id="question">
-        Loading question...
-      </h2>
-
-      <p class="instruction">
-        Answer the question correctly to unlock an AFL possession.
-      </p>
+      <h2 id="question"></h2>
 
       <textarea
         id="answer"
@@ -46,13 +41,11 @@
 
       <p id="feedback"></p>
 
-      <div class="topic-box">
-        <strong>HSC technique:</strong>
-        Use specific technical terminology and explain your reasoning rather
-        than giving a one-word response when the question asks you to explain.
-      </div>
+      <p class="hint">
+        You must answer correctly to unlock the AFL play.
+      </p>
 
-    </section>
+    </div>
 
   </main>
 
@@ -60,106 +53,97 @@
   <!-- AFL GAME -->
   <main id="aflScreen" class="screen">
 
-    <section class="afl-header">
-
+    <div class="afl-header">
       <div>
-        <h2>🏉 AFL POSSESSION</h2>
+        <b>PLAY <span id="playNumber">1</span></b>
+      </div>
+
+      <div id="gameClock">01:32</div>
+    </div>
+
+    <div class="game-layout">
+
+      <section class="field-container">
+
+        <div id="field">
+
+          <div class="centre-circle"></div>
+
+          <div class="goal-square top"></div>
+          <div class="goal-square bottom"></div>
+
+          <div class="goal-line top-line"></div>
+          <div class="goal-line bottom-line"></div>
+
+          <div id="player" class="player user-player">
+            <span>YOU</span>
+          </div>
+
+          <div class="player defender cpu1">
+            <span>DEF</span>
+          </div>
+
+          <div class="player defender cpu2">
+            <span>DEF</span>
+          </div>
+
+          <div id="ball"></div>
+
+        </div>
+
+      </section>
+
+      <aside class="game-panel">
+
+        <h2>LIVE PLAY</h2>
+
         <p id="playText">
-          Read the field and make your decision.
+          You're inside attacking range. Read the defenders and make your decision.
         </p>
-      </div>
 
-      <div class="controls">
-        <span>WASD Move</span>
-        <span>SHIFT Sprint</span>
-        <span>E Evade</span>
-        <span>K Kick</span>
-        <span>H Handball</span>
-        <span>L Lead Kick</span>
-      </div>
-
-    </section>
-
-
-    <section class="game-wrapper">
-
-      <div id="field">
-
-        <!-- Goals -->
-        <div class="goal goal-top">
-          <div class="goal-post left"></div>
-          <div class="goal-post centre"></div>
-          <div class="goal-post right"></div>
+        <div class="status" id="gameStatus">
+          You have possession.
         </div>
 
-        <div class="goal goal-bottom">
-          <div class="goal-post left"></div>
-          <div class="goal-post centre"></div>
-          <div class="goal-post right"></div>
+        <div class="controls">
+
+          <h3>CONTROLS</h3>
+
+          <p><kbd>W A S D</kbd> Move</p>
+          <p><kbd>SHIFT</kbd> Sprint</p>
+          <p><kbd>E</kbd> Evade / Burst</p>
+          <p><kbd>K</kbd> Kick</p>
+          <p><kbd>H</kbd> Handball</p>
+          <p><kbd>L</kbd> Lead Kick</p>
+
         </div>
 
-        <!-- Centre -->
-        <div class="centre-circle"></div>
-        <div class="centre-line"></div>
+        <div class="mobile-controls">
 
-        <!-- Player -->
-        <div id="player" class="player">
-          <span>YOU</span>
+          <button data-key="w">▲</button>
+
+          <div>
+            <button data-key="a">◀</button>
+            <button data-key="s">▼</button>
+            <button data-key="d">▶</button>
+          </div>
+
+          <div>
+            <button data-action="sprint">SPRINT</button>
+            <button data-action="evade">EVADE</button>
+          </div>
+
+          <div>
+            <button data-action="kick">KICK</button>
+            <button data-action="handball">HANDPASS</button>
+            <button data-action="lead">LEAD KICK</button>
+          </div>
+
         </div>
 
-        <!-- Teammates -->
-        <div class="teammate teammate1">
-          <span>TM</span>
-        </div>
+      </aside>
 
-        <div class="teammate teammate2">
-          <span>TM</span>
-        </div>
-
-        <div class="teammate teammate3">
-          <span>TM</span>
-        </div>
-
-        <!-- Defenders -->
-        <div class="defender cpu1">
-          <span>OPP</span>
-        </div>
-
-        <div class="defender cpu2">
-          <span>OPP</span>
-        </div>
-
-        <div class="defender cpu3">
-          <span>OPP</span>
-        </div>
-
-        <!-- Ball -->
-        <div id="ball">🏉</div>
-
-      </div>
-
-    </section>
-
-
-    <section class="game-info">
-
-      <div id="gameStatus">
-        You have possession.
-      </div>
-
-      <div class="decision-panel">
-
-        <button onclick="kick()">K — KICK</button>
-
-        <button onclick="handball()">H — HANDBALL</button>
-
-        <button onclick="leadKick()">L — LEAD KICK</button>
-
-        <button onclick="evade()">E — EVADE</button>
-
-      </div>
-
-    </section>
+    </div>
 
   </main>
 
@@ -167,22 +151,15 @@
   <!-- RESULTS -->
   <main id="resultScreen" class="screen">
 
-    <section class="result-card">
+    <div class="result-card">
 
-      <h2>🏆 CHALLENGE COMPLETE</h2>
+      <h1>FULL TIME 🏉</h1>
 
-      <div id="finalResult"></div>
+      <p id="finalResult"></p>
 
-      <div class="result-message">
-        Keep revising the Entertainment Industry concepts and practise
-        explaining your answers using HSC terminology.
-      </div>
+      <button onclick="location.reload()">PLAY AGAIN</button>
 
-      <button onclick="location.reload()">
-        PLAY AGAIN
-      </button>
-
-    </section>
+    </div>
 
   </main>
 
