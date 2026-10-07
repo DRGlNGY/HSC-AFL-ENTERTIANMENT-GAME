@@ -1,122 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Entertainment x AFL Challenge</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSC Entertainment × AFL Challenge</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="app">
+  <header>
+    <h1>🎭 HSC ENTERTAINMENT × 🏉 AFL</h1>
+    <p>Technical Crew Challenge</p>
+    <div class="scores">
+      <span>Entertainment: <b id="entScore">0</b></span>
+      <span>AFL: <b id="aflScore">0</b></span>
+    </div>
+  </header>
 
-    <header>
+  <main>
+
+    <section id="quizScreen" class="screen active">
+      <div class="card">
+        <div class="tag">HSC TECHNICAL CREW</div>
+        <h2 id="questionNumber">Entertainment Question 1</h2>
+        <p id="question"></p>
+
+        <textarea id="answer" placeholder="Type your answer here..."></textarea>
+
+        <button id="submitBtn">SUBMIT ANSWER</button>
+
+        <p id="feedback"></p>
+      </div>
+    </section>
+
+    <section id="aflScreen" class="screen">
+      <div class="afl-header">
         <div>
-            <h1>🎭 ENTERTAINMENT × 🏉 AFL</h1>
-            <p>HSC Technical Crew Challenge</p>
+          <b>FINAL QUARTER</b>
+          <span id="aflSituation">01:32 remaining</span>
+        </div>
+        <div>
+          AFL Score: <b id="aflDisplay">0</b>
+        </div>
+      </div>
+
+      <div class="game-wrapper">
+
+        <div class="field" id="field">
+
+          <div class="goal goal-top"></div>
+          <div class="goal goal-bottom"></div>
+
+          <div class="centre-circle"></div>
+
+          <div class="player user-player" id="player">
+            <span>YOU</span>
+          </div>
+
+          <div class="player cpu cpu1" id="cpu1">
+            <span>DEF</span>
+          </div>
+
+          <div class="player cpu cpu2" id="cpu2">
+            <span>DEF</span>
+          </div>
+
+          <div class="player teammate teammate1">
+            <span>TEAM</span>
+          </div>
+
+          <div class="ball" id="ball"></div>
+
         </div>
 
-        <div id="scoreboard">
-            <span>Entertainment: <b id="entScore">0</b></span>
-            <span>AFL: <b id="aflScore">0</b></span>
-        </div>
-    </header>
+        <div class="controls">
+          <h3>YOU HAVE POSSESSION</h3>
+          <p id="playText">Move into space and decide what to do.</p>
 
-    <!-- QUESTION SCREEN -->
-    <section id="questionScreen" class="screen">
+          <div class="control-grid">
+            <div><b>W A S D</b><br>Move</div>
+            <div><b>SHIFT</b><br>Sprint</div>
+            <div><b>E</b><br>Evade</div>
+            <div><b>K</b><br>Kick</div>
+            <div><b>H</b><br>Handball</div>
+            <div><b>L</b><br>Lead Kick</div>
+          </div>
 
-        <div class="question-card">
-
-            <div class="question-header">
-                <span id="questionTopic">WHS</span>
-                <span id="questionNumber">Question 1</span>
-            </div>
-
-            <h2 id="questionText"></h2>
-
-            <div id="answerArea"></div>
-
-            <button id="submitAnswer">SUBMIT ANSWER</button>
-
-            <p id="questionFeedback"></p>
-
+          <p class="status" id="gameStatus">Get into position...</p>
         </div>
 
+      </div>
     </section>
 
-
-    <!-- AFL SCREEN -->
-    <section id="aflScreen" class="screen hidden">
-
-        <div id="aflTopBar">
-            <div>
-                <b id="playNumber">PLAY 1</b>
-                <span id="gameSituation">Late in the fourth quarter</span>
-            </div>
-
-            <div>
-                <b id="aflClock">01:32</b>
-            </div>
-        </div>
-
-        <div id="gameContainer">
-
-            <canvas id="gameCanvas"></canvas>
-
-            <div id="povMessage">
-                GET READY
-            </div>
-
-            <div id="controls">
-                <div>
-                    <kbd>W A S D</kbd> Move
-                    <kbd>SHIFT</kbd> Sprint
-                    <kbd>E</kbd> Evade
-                </div>
-
-                <div>
-                    <kbd>K</kbd> Kick
-                    <kbd>H</kbd> Handball
-                    <kbd>L</kbd> Lead Kick
-                </div>
-            </div>
-
-            <div id="decisionPanel" class="hidden">
-
-                <h2 id="decisionTitle">MAKE YOUR DECISION</h2>
-
-                <p id="decisionText"></p>
-
-                <div id="decisionButtons"></div>
-
-            </div>
-
-        </div>
-
+    <section id="resultScreen" class="screen">
+      <div class="card">
+        <h2>🏆 SESSION COMPLETE</h2>
+        <p id="finalResult"></p>
+        <button onclick="location.reload()">PLAY AGAIN</button>
+      </div>
     </section>
 
+  </main>
 
-    <!-- RESULT SCREEN -->
-    <section id="resultScreen" class="screen hidden">
-
-        <div class="result-card">
-
-            <div id="resultIcon">🏉</div>
-
-            <h2 id="resultTitle"></h2>
-
-            <p id="resultText"></p>
-
-            <button id="continueButton">CONTINUE</button>
-
-        </div>
-
-    </section>
-
-</div>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
