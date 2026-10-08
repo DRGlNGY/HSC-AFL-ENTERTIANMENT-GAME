@@ -5,82 +5,56 @@
 html,
 body {
   margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  background: #07100b;
+  background:
+    radial-gradient(circle at top, #182944, #05080e 75%);
   color: white;
 }
 
 
-/* ========================= */
-/* TOP BAR */
-/* ========================= */
+/* =========================
+   HEADER
+========================= */
 
-.topbar {
-  height: 90px;
-  background:
-    linear-gradient(
-      90deg,
-      #07130b,
-      #10251a,
-      #07130b
-    );
-
-  border-bottom: 2px solid #2d5138;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 12px 25px;
-
-  position: relative;
-  z-index: 20;
+header {
+  padding: 18px;
+  text-align: center;
+  background: rgba(4, 8, 14, 0.95);
+  border-bottom: 1px solid #263951;
 }
 
-.topbar h1 {
+header h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 28px;
 }
 
-.topbar p {
-  margin: 4px 0 0;
-  color: #9bb3a0;
+header p {
+  margin: 5px 0 14px;
+  color: #aab8cc;
 }
 
 .scoreboard {
   display: flex;
-  gap: 30px;
+  justify-content: center;
+  gap: 35px;
+  font-size: 14px;
 }
 
-.scoreboard div {
-  text-align: center;
-}
-
-.scoreboard span {
-  display: block;
-  color: #8ea397;
-  font-size: 11px;
-}
-
-.scoreboard strong {
-  display: block;
-  font-size: 25px;
+.scoreboard b {
   color: #55e37d;
+  margin-left: 5px;
 }
 
 
-/* ========================= */
-/* SCREENS */
-/* ========================= */
+/* =========================
+   SCREENS
+========================= */
 
 .screen {
   display: none;
-  width: 100%;
-  height: calc(100vh - 90px);
+  min-height: calc(100vh - 115px);
+  padding: 30px;
 }
 
 .screen.active {
@@ -88,294 +62,522 @@ body {
 }
 
 
-/* ========================= */
-/* QUIZ */
-/* ========================= */
-
-#quizScreen {
-  overflow-y: auto;
-
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      #193c27,
-      #07100b 70%
-    );
-
-  padding: 50px 20px;
-}
+/* =========================
+   QUIZ
+========================= */
 
 .quiz-card {
   width: min(850px, 100%);
-  margin: auto;
-
+  margin: 55px auto;
   padding: 40px;
-
   border-radius: 22px;
-
   background:
-    rgba(12, 25, 17, 0.97);
-
-  border: 1px solid #31563b;
-
-  box-shadow:
-    0 25px 80px rgba(0,0,0,0.55);
+    linear-gradient(
+      145deg,
+      rgba(22, 35, 55, .98),
+      rgba(9, 16, 27, .98)
+    );
+  border: 1px solid #304664;
+  box-shadow: 0 25px 70px rgba(0,0,0,.45);
 }
 
-.question-number {
+.question-tag {
   color: #55e37d;
   font-weight: bold;
-  margin-bottom: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
 }
 
 .quiz-card h2 {
   font-size: 25px;
   line-height: 1.45;
+  margin-bottom: 30px;
 }
+
+
+/* ANSWERS */
 
 .answers {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-
-  margin-top: 25px;
+  gap: 14px;
 }
 
 .answer-button {
-  padding: 18px;
-
-  background: #16271b;
-  color: white;
-
-  border: 2px solid #31563b;
-  border-radius: 12px;
-
-  cursor: pointer;
-
+  width: 100%;
   text-align: left;
-
-  font-size: 16px;
-
-  transition: 0.15s;
+  padding: 18px 20px;
+  margin: 0;
+  border-radius: 12px;
+  border: 2px solid #344b68;
+  background: #101c2d;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  transition: .15s;
 }
 
 .answer-button:hover {
-  background: #23412b;
+  background: #1b304a;
+  border-color: #55e37d;
+  transform: translateX(4px);
+}
+
+.answer-button.correct {
+  background: #155c34;
   border-color: #55e37d;
 }
 
-.answer-button.selected {
-  background: #236c3a;
-  border-color: #55e37d;
-}
-
-textarea {
-  width: 100%;
-  min-height: 140px;
-
-  margin-top: 20px;
-
-  padding: 15px;
-
-  resize: vertical;
-
-  background: #060b08;
-
-  color: white;
-
-  border: 2px solid #31563b;
-  border-radius: 12px;
-
-  font-size: 17px;
-
-  font-family: Arial;
-}
-
-textarea:focus {
-  outline: none;
-  border-color: #55e37d;
-}
-
-#submitAnswer {
-  margin-top: 20px;
-
-  padding: 15px 25px;
-
-  background: #55e37d;
-  color: #061009;
-
-  border: none;
-
-  border-radius: 10px;
-
-  font-weight: bold;
-
-  cursor: pointer;
-
-  font-size: 16px;
+.answer-button.wrong {
+  background: #631f27;
+  border-color: #ff6262;
 }
 
 #feedback {
-  min-height: 25px;
-
+  min-height: 30px;
+  margin-top: 20px;
   font-weight: bold;
+  font-size: 17px;
 }
 
-.hint {
-  color: #7d9383;
+.rule {
+  color: #8495aa;
+  font-size: 14px;
 }
 
 
-/* ========================= */
-/* GAME */
-/* ========================= */
+/* =========================
+   AFL HEADER
+========================= */
 
-#gameScreen {
+.afl-top {
+  max-width: 1500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px 18px;
+  font-size: 18px;
+}
+
+.game-time {
+  color: #ffd34d;
+  font-size: 24px;
+}
+
+
+/* =========================
+   GAME LAYOUT
+========================= */
+
+.game-wrapper {
+  max-width: 1500px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 25px;
+}
+
+
+/* =========================
+   OVAL
+========================= */
+
+.stadium {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#aflField {
   position: relative;
-  background: #07100b;
+  width: min(1000px, 100%);
+  aspect-ratio: 1.55 / 1;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 0px,
+      rgba(255,255,255,.025) 4px,
+      transparent 4px,
+      transparent 34px
+    ),
+    linear-gradient(
+      90deg,
+      #0c6331,
+      #159247,
+      #0b6935
+    );
+
+  border: 9px solid white;
+
+  box-shadow:
+    inset 0 0 90px rgba(0,0,0,.35),
+    0 30px 80px rgba(0,0,0,.6);
+
+  touch-action: none;
 }
 
-.game-info {
-  height: 55px;
 
+/* FIELD MARKINGS */
+
+.centre-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: rgba(255,255,255,.75);
+  transform: translateX(-50%);
+}
+
+.centre-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130px;
+  height: 130px;
+  border: 3px solid rgba(255,255,255,.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centre-square {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid rgba(255,255,255,.5);
+  transform: translate(-50%, -50%);
+}
+
+
+/* GOAL SQUARES */
+
+.goal-square {
+  position: absolute;
+  width: 95px;
+  height: 125px;
+  border: 2px solid white;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.goal-top {
+  top: 0;
+}
+
+.goal-bottom {
+  bottom: 0;
+}
+
+
+/* =========================
+   GOAL POSTS
+========================= */
+
+.goal-post {
+  position: absolute;
+  width: 10px;
+  height: 58px;
+  background: white;
+  border-radius: 5px;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(0,0,0,.35);
+}
+
+
+/* top four */
+
+.top-left {
+  left: calc(50% - 46px);
+  top: 1px;
+}
+
+.top-left-small {
+  left: calc(50% - 18px);
+  top: 1px;
+  height: 43px;
+}
+
+.top-right-small {
+  left: calc(50% + 8px);
+  top: 1px;
+  height: 43px;
+}
+
+.top-right {
+  left: calc(50% + 36px);
+  top: 1px;
+}
+
+
+/* bottom four */
+
+.bottom-left {
+  left: calc(50% - 46px);
+  bottom: 1px;
+}
+
+.bottom-left-small {
+  left: calc(50% - 18px);
+  bottom: 1px;
+  height: 43px;
+}
+
+.bottom-right-small {
+  left: calc(50% + 8px);
+  bottom: 1px;
+  height: 43px;
+}
+
+.bottom-right {
+  left: calc(50% + 36px);
+  bottom: 1px;
+}
+
+
+/* =========================
+   PLAYERS
+========================= */
+
+.player {
   position: absolute;
 
-  top: 10px;
-  left: 20px;
-  right: 20px;
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
 
   z-index: 10;
 
-  display: flex;
+  transition:
+    left .25s ease,
+    top .25s ease,
+    transform .15s;
 
-  justify-content: space-between;
-  align-items: center;
+  cursor: pointer;
+}
 
-  padding: 10px 20px;
+.player::after {
+  content: "";
+  position: absolute;
 
+  width: 8px;
+  height: 5px;
+
+  left: 50%;
+  top: 50%;
+
+  background: #f3b17d;
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.blue {
   background:
-    rgba(5, 15, 8, 0.8);
+    radial-gradient(
+      circle at 35% 25%,
+      #ffffff,
+      #1d76e8 25%,
+      #063b99 75%
+    );
 
-  border:
-    1px solid #35533d;
+  border: 2px solid white;
+
+  box-shadow:
+    0 0 12px rgba(40,130,255,.7);
+}
+
+.red {
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #ffaaaa,
+      #df2020 35%,
+      #730000
+    );
+
+  border: 2px solid white;
+
+  box-shadow:
+    0 0 9px rgba(255,30,30,.55);
+}
+
+.player.selected {
+  transform:
+    translate(-50%, -50%)
+    scale(1.35);
+
+  box-shadow:
+    0 0 0 4px #ffd34d,
+    0 0 25px #ffd34d;
+}
+
+
+/* BALL */
+
+#ball {
+  position: absolute;
+
+  width: 16px;
+  height: 24px;
+
+  background: #b96327;
+
+  border: 2px solid #542707;
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-25deg);
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  transition:
+    left .18s linear,
+    top .18s linear;
+}
+
+
+/* PASS LINE */
+
+#passLine {
+  position: absolute;
+
+  height: 4px;
+
+  background: #ffd34d;
+
+  transform-origin: left center;
+
+  display: none;
+
+  z-index: 15;
+
+  pointer-events: none;
+
+  box-shadow: 0 0 10px #ffd34d;
+}
+
+
+/* =========================
+   GAME PANEL
+========================= */
+
+.game-panel {
+  background: rgba(10,18,30,.97);
+
+  border: 1px solid #304664;
+
+  border-radius: 18px;
+
+  padding: 25px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+.game-panel h2 {
+  margin-top: 0;
+}
+
+#playMessage {
+  color: #c3cfdd;
+  line-height: 1.5;
+}
+
+.instruction {
+  padding: 16px;
+
+  margin: 20px 0;
+
+  background: #0b1523;
 
   border-radius: 12px;
 
-  pointer-events: none;
+  color: #aebed0;
+
+  line-height: 1.5;
 }
 
-#gameMessage {
-  color: #d5e5d9;
-}
+.game-status {
+  padding: 15px;
 
+  border-radius: 10px;
 
-/* ========================= */
-/* THREE JS CANVAS */
-/* ========================= */
+  background: #132238;
 
-#gameContainer {
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-}
-
-#gameCanvas {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-}
-
-
-/* ========================= */
-/* CONTROLS */
-/* ========================= */
-
-#controls {
-  position: absolute;
-
-  left: 20px;
-  bottom: 20px;
-
-  width: 280px;
-
-  padding: 18px;
-
-  background:
-    rgba(4, 12, 7, 0.88);
-
-  border:
-    1px solid #36583e;
-
-  border-radius: 15px;
-
-  z-index: 10;
-}
-
-.control-title {
   color: #55e37d;
+
   font-weight: bold;
-  margin-bottom: 10px;
+
+  line-height: 1.4;
 }
 
-#controls p {
-  margin: 8px 0;
+.legend {
+  display: flex;
 
-  color: #c2d1c6;
+  gap: 15px;
+
+  margin-top: 20px;
+
+  color: #9eafc2;
 
   font-size: 13px;
 }
 
-kbd {
-  background: #263a2b;
-
-  padding: 4px 7px;
-
-  border-radius: 5px;
-
-  border: 1px solid #4b6752;
-}
-
-
-/* ========================= */
-/* RESULT */
-/* ========================= */
-
-#resultScreen {
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  background:
-    radial-gradient(
-      circle,
-      #194b29,
-      #061008
-    );
-}
-
-#resultScreen.active {
+.legend span {
   display: flex;
+  align-items: center;
+  gap: 5px;
 }
+
+.blue-dot,
+.red-dot {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.blue-dot {
+  background: #1976e8;
+}
+
+.red-dot {
+  background: #dc2222;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
 
 .result-card {
-  width: min(600px, 90%);
+  width: min(650px, 100%);
 
-  padding: 50px;
+  margin: 80px auto;
 
   text-align: center;
 
-  background: #102117;
+  padding: 50px;
 
-  border:
-    1px solid #3d6747;
+  background: #101c2d;
+
+  border: 1px solid #304664;
 
   border-radius: 20px;
-
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.5);
 }
 
 .result-card h1 {
@@ -387,48 +589,50 @@ kbd {
 
   padding: 15px 25px;
 
-  background: #55e37d;
-
-  border: none;
+  border: 0;
 
   border-radius: 10px;
 
+  background: #55e37d;
+
   font-weight: bold;
+
+  cursor: pointer;
 }
 
 
-/* ========================= */
-/* MOBILE */
-/* ========================= */
+/* =========================
+   MOBILE
+========================= */
 
-@media (max-width: 700px) {
+@media (max-width: 950px) {
 
-  .topbar {
-    height: 75px;
-    padding: 8px 12px;
+  .game-wrapper {
+    grid-template-columns: 1fr;
   }
 
-  .topbar h1 {
-    font-size: 15px;
+  .game-panel {
+    order: 2;
   }
 
-  .topbar p {
-    font-size: 11px;
+  #aflField {
+    width: 100%;
   }
+}
 
-  .scoreboard {
-    gap: 10px;
-  }
 
-  .scoreboard strong {
-    font-size: 18px;
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 20px;
   }
 
   .screen {
-    height: calc(100vh - 75px);
+    padding: 15px;
   }
 
   .quiz-card {
+    margin: 20px auto;
     padding: 25px;
   }
 
@@ -436,12 +640,25 @@ kbd {
     font-size: 20px;
   }
 
-  .answers {
-    grid-template-columns: 1fr;
+  .answer-button {
+    font-size: 15px;
   }
 
-  #controls {
-    width: 220px;
-    padding: 12px;
+  .afl-top {
+    font-size: 13px;
+  }
+
+  .game-time {
+    font-size: 18px;
+  }
+
+  .player {
+    width: 21px;
+    height: 21px;
+  }
+
+  #ball {
+    width: 12px;
+    height: 18px;
   }
 }
