@@ -3,181 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entertainment × AFL HSC Challenge</title>
+
+  <title>Entertainment × AFL</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <h1>🏉 ENTERTAINMENT × AFL</h1>
-  <p>HSC Technical Crew Challenge</p>
+  <header class="topbar">
 
-  <div class="scores">
-    <span>Entertainment: <b id="entScore">0</b></span>
-    <span>AFL: <b id="aflScore">0</b></span>
-  </div>
-</header>
-
-<!-- ENTERTAINMENT QUIZ -->
-<main id="quizScreen" class="screen active">
-
-  <div class="quiz-card">
-
-    <div class="question-label" id="questionNumber">
-      Entertainment Question 1
-    </div>
-
-    <div class="question-type" id="questionType">
-      MULTIPLE CHOICE
-    </div>
-
-    <h2 id="question"></h2>
-
-    <!-- SHORT ANSWER -->
-    <textarea
-      id="answer"
-      placeholder="Type your answer here..."
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="sentences"
-      spellcheck="false"
-    ></textarea>
-
-    <!-- MULTIPLE CHOICE -->
-    <div id="multipleChoice" class="multiple-choice"></div>
-
-    <button id="submitBtn">SUBMIT ANSWER</button>
-
-    <p id="feedback"></p>
-
-    <p class="hint">
-      Get the Entertainment question correct to unlock your AFL play.
-    </p>
-
-  </div>
-
-</main>
-
-
-<!-- AFL GAME -->
-<main id="aflScreen" class="screen">
-
-  <div class="afl-header">
     <div>
-      <b>PLAY <span id="playNumber">1</span></b>
+      <h1>🏉 ENTERTAINMENT × AFL</h1>
+      <p>HSC Technical Crew Challenge</p>
     </div>
 
-    <div id="gameClock">01:32</div>
-  </div>
+    <div class="scoreboard">
 
-  <div class="game-layout">
-
-    <section class="field-container">
-
-      <div id="field">
-
-        <div class="centre-circle"></div>
-
-        <div class="goal-square top"></div>
-        <div class="goal-square bottom"></div>
-
-        <div class="goal-line top-line"></div>
-        <div class="goal-line bottom-line"></div>
-
-        <div id="player" class="player user-player">
-          <span>YOU</span>
-        </div>
-
-        <div class="player defender cpu1">
-          <span>DEF</span>
-        </div>
-
-        <div class="player defender cpu2">
-          <span>DEF</span>
-        </div>
-
-        <div id="ball"></div>
-
+      <div>
+        <span>ENTERTAINMENT</span>
+        <strong id="entScore">0</strong>
       </div>
 
-    </section>
+      <div>
+        <span>AFL</span>
+        <strong id="aflScore">0</strong>
+      </div>
 
-    <aside class="game-panel">
+    </div>
 
-      <h2>LIVE PLAY</h2>
+  </header>
 
-      <p id="playText">
-        You're inside attacking range. Read the defenders and make your decision.
+
+  <!-- ========================= -->
+  <!-- ENTERTAINMENT QUESTION -->
+  <!-- ========================= -->
+
+  <section id="quizScreen" class="screen active">
+
+    <div class="quiz-card">
+
+      <div class="question-number" id="questionNumber">
+        Entertainment Question 1
+      </div>
+
+      <h2 id="question">
+        Loading question...
+      </h2>
+
+      <div id="answers" class="answers"></div>
+
+      <textarea
+        id="shortAnswer"
+        placeholder="Type your answer here..."
+      ></textarea>
+
+      <button id="submitAnswer">
+        SUBMIT ANSWER
+      </button>
+
+      <p id="feedback"></p>
+
+      <p class="hint">
+        Answer correctly to unlock the next AFL play.
       </p>
 
-      <div class="status" id="gameStatus">
-        You have possession.
+    </div>
+
+  </section>
+
+
+  <!-- ========================= -->
+  <!-- AFL GAME -->
+  <!-- ========================= -->
+
+  <section id="gameScreen" class="screen">
+
+    <div class="game-info">
+
+      <div>
+        <strong id="playNumber">PLAY 1</strong>
       </div>
 
-      <div class="controls">
+      <div id="gameMessage">
+        Select one of your players.
+      </div>
 
-        <h3>CONTROLS</h3>
+      <div>
+        AFL SCORE:
+        <strong id="aflGameScore">0</strong>
+      </div>
 
-        <p><kbd>W A S D</kbd> Move</p>
-        <p><kbd>SHIFT</kbd> Sprint</p>
-        <p><kbd>E</kbd> Evade / Burst</p>
-        <p><kbd>K</kbd> Kick</p>
-        <p><kbd>H</kbd> Handball</p>
-        <p><kbd>L</kbd> Lead Kick</p>
+    </div>
+
+
+    <div id="gameContainer">
+
+      <canvas id="gameCanvas"></canvas>
+
+      <div id="aimLine"></div>
+
+      <div id="controls">
+
+        <div class="control-title">
+          AFL CONTROLS
+        </div>
+
+        <p>
+          🖱️ Click your player to select them
+        </p>
+
+        <p>
+          🖱️ Drag toward a teammate to pass
+        </p>
+
+        <p>
+          🎯 Release to kick/handball
+        </p>
+
+        <p>
+          <kbd>SPACE</kbd> Call for ball
+        </p>
 
       </div>
 
-      <!-- MOBILE CONTROLS -->
+    </div>
 
-      <div class="mobile-controls">
-
-        <button data-key="w">▲</button>
-
-        <div>
-          <button data-key="a">◀</button>
-          <button data-key="s">▼</button>
-          <button data-key="d">▶</button>
-        </div>
-
-        <div>
-          <button data-action="sprint">SPRINT</button>
-          <button data-action="evade">EVADE</button>
-        </div>
-
-        <div>
-          <button data-action="kick">KICK</button>
-          <button data-action="handball">HANDPASS</button>
-          <button data-action="lead">LEAD KICK</button>
-        </div>
-
-      </div>
-
-    </aside>
-
-  </div>
-
-</main>
+  </section>
 
 
-<!-- RESULTS -->
+  <!-- ========================= -->
+  <!-- RESULTS -->
+  <!-- ========================= -->
 
-<main id="resultScreen" class="screen">
+  <section id="resultScreen" class="screen">
 
-  <div class="result-card">
+    <div class="result-card">
 
-    <h1>FULL TIME 🏉</h1>
+      <h1>🏆 FULL TIME</h1>
 
-    <p id="finalResult"></p>
+      <div id="finalResult"></div>
 
-    <button onclick="location.reload()">PLAY AGAIN</button>
+      <button onclick="location.reload()">
+        PLAY AGAIN
+      </button>
 
-  </div>
+    </div>
 
-</main>
+  </section>
 
 
-<script src="script.js"></script>
+  <!-- THREE.JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
