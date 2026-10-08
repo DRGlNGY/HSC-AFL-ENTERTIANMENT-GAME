@@ -1,11 +1,11 @@
 const questions = [
   {
     q: "A venue is preparing for a production. Explain why a risk assessment should be completed before technical work begins.",
-    answers: ["risk assessment", "hazard", "risk", "safety"]
+    answers: ["risk assessment"]
   },
   {
     q: "A three-phase lighting system needs to distribute electrical load evenly. What is the purpose of balancing the phases?",
-    answers: ["power", "distributed", "even", "load"]
+    answers: ["distribute", "distributed", "evenly", "load", "power"]
   },
   {
     q: "A customer asks a venue worker, 'Could you explain the different seating options?' What type of question is this?",
@@ -16,7 +16,7 @@ const questions = [
     answers: ["fresnel"]
   },
   {
-    q: "A technician needs to send one video source to several destinations. What type of device could be used to distribute the video signal?",
+    q: "A technician needs to send one video source to several destinations. What device could distribute the video signal?",
     answers: ["distribution amplifier", "vda"]
   },
   {
@@ -29,7 +29,7 @@ const questions = [
   },
   {
     q: "Explain one reason why a dynamic microphone may be appropriate for a loud live performance.",
-    answers: ["rugged", "loud", "durable", "live"]
+    answers: ["rugged", "durable", "high spl", "live"]
   },
   {
     q: "A new scenic element is introduced during rehearsal. Which lighting role would decide how it should be incorporated into the lighting design?",
@@ -37,11 +37,11 @@ const questions = [
   },
   {
     q: "A cable creates a trip hazard in a busy work area. Give one control that physically reduces the hazard.",
-    answers: ["cable cover", "cable ramp", "cover"]
+    answers: ["cable cover", "cable ramp"]
   },
   {
     q: "What is the main purpose of a safety chain when suspending a lighting fixture?",
-    answers: ["backup", "prevent", "fall"]
+    answers: ["backup", "secondary", "prevent falling", "fall"]
   },
   {
     q: "What is the difference between FOH audio and monitor audio?",
@@ -68,8 +68,7 @@ const ball = document.getElementById("ball");
 let keys = {};
 let gameActive = false;
 let hasPossession = true;
-
-let lastTime = performance.now();
+let lastTime = 0;
 
 let playerX = 50;
 let playerY = 70;
@@ -82,11 +81,10 @@ let cpuY2 = 45;
 
 
 /* =========================
-   ENTERTAINMENT QUESTIONS
+   ENTERTAINMENT QUIZ
 ========================= */
 
 function loadQuestion() {
-
   if (questionIndex >= questions.length) {
     finishGame();
     return;
@@ -101,41 +99,39 @@ function loadQuestion() {
   answerBox.value = "";
   feedback.textContent = "";
 
-  // Put cursor back into answer box
+  // This is safe because no AFL keyboard controls
+  // are active while the quiz screen is showing.
   setTimeout(() => {
-    answerBox.focus();
+    if (quizScreen.classList.contains("active")) {
+      answerBox.focus();
+    }
   }, 50);
 }
 
 
 function checkAnswer() {
+  // Make absolutely sure we're checking the answer box.
+  const response = answerBox.value.trim().toLowerCase();
 
-  const response = answerBox.value
-    .toLowerCase()
-    .trim();
-
-  if (!response) {
+  if (response === "") {
     feedback.textContent = "Type an answer first.";
     feedback.style.color = "#ffd34d";
     return;
   }
 
-  const accepted =
-    questions[questionIndex].answers;
+  const accepted = questions[questionIndex].answers;
 
-  const correct = accepted.some(word =>
-    response.includes(word)
+  const correct = accepted.some(answer =>
+    response.includes(answer.toLowerCase())
   );
 
   if (correct) {
-
     entScore++;
 
-    document.getElementById("entScore")
-      .textContent = entScore;
+    document.getElementById("entScore").textContent =
+      entScore;
 
     feedback.style.color = "#55e37d";
-
     feedback.textContent =
       "✓ Correct! AFL play unlocked.";
 
@@ -146,25 +142,40 @@ function checkAnswer() {
   } else {
 
     feedback.style.color = "#ff6868";
-
     feedback.textContent =
-      "✗ Not quite. Review the concept and try again.";
+      "✗ Not quite. Try again.";
   }
 }
 
 
+/* SUBMIT BUTTON */
+
 document
   .getElementById("submitBtn")
-  .addEventListener("click", checkAnswer);
+  .addEventListener("click", function () {
+    checkAnswer();
+  });
 
 
-/* ENTER = SUBMIT WHILE TYPING */
+/*
+   ENTER KEY
 
-answerBox.addEventListener("keydown", function(e) {
+   IMPORTANT:
+   This listener ONLY belongs to the textarea.
 
-  if (e.key === "Enter") {
+   AFL keyboard controls cannot interfere with it.
+*/
 
-    e.preventDefault();
+answerBox.addEventListener("keydown", function (event) {
+
+  if (event.key === "Enter") {
+
+    // Shift+Enter gives a new line.
+    if (event.shiftKey) {
+      return;
+    }
+
+    event.preventDefault();
 
     checkAnswer();
   }
@@ -177,6 +188,9 @@ answerBox.addEventListener("keydown", function(e) {
 ========================= */
 
 function startAFL() {
+
+  // Stop any old keyboard state.
+  keys = {};
 
   quizScreen.classList.remove("active");
   aflScreen.classList.add("active");
@@ -241,13 +255,12 @@ function updatePositions() {
 
 function gameLoop(time) {
 
-  if (!gameActive) return;
+  if (!gameActive) {
+    return;
+  }
 
   const delta =
-    Math.min(
-      (time - lastTime) / 16.67,
-      2
-    );
+    Math.min((time - lastTime) / 16.67, 2);
 
   lastTime = time;
 
@@ -255,7 +268,6 @@ function gameLoop(time) {
   moveCPU(delta);
 
   updatePositions();
-
   checkDefenderPressure();
 
   requestAnimationFrame(gameLoop);
@@ -268,24 +280,16 @@ function gameLoop(time) {
 
 function movePlayer(delta) {
 
-  let speed =
-    keys["shift"] ? 0.42 : 0.24;
+  let speed = keys.shift ? 0.42 : 0.24;
 
-  if (keys["e"]) {
+  if (keys.e) {
     speed = 0.65;
   }
 
-  if (keys["w"])
-    playerY -= speed * delta;
-
-  if (keys["s"])
-    playerY += speed * delta;
-
-  if (keys["a"])
-    playerX -= speed * delta;
-
-  if (keys["d"])
-    playerX += speed * delta;
+  if (keys.w) playerY -= speed * delta;
+  if (keys.s) playerY += speed * delta;
+  if (keys.a) playerX -= speed * delta;
+  if (keys.d) playerX += speed * delta;
 
   playerX =
     Math.max(3, Math.min(97, playerX));
@@ -296,12 +300,10 @@ function movePlayer(delta) {
 
 
 /* =========================
-   CPU DEFENDERS
+   DEFENDER AI
 ========================= */
 
 function moveCPU(delta) {
-
-  // Defender 1 tracks player
 
   cpuX1 +=
     (playerX - cpuX1) *
@@ -314,15 +316,13 @@ function moveCPU(delta) {
     delta;
 
 
-  // Defender 2 anticipates movement
-
   const targetX =
     playerX +
-    (keys["d"] ? 4 :
-     keys["a"] ? -4 : 0);
+    (keys.d ? 4 : keys.a ? -4 : 0);
 
   const targetY =
     playerY - 3;
+
 
   cpuX2 +=
     (targetX - cpuX2) *
@@ -348,13 +348,9 @@ function checkDefenderPressure() {
       playerY - cpuY1
     );
 
-  if (
-    distance < 5 &&
-    !keys["e"]
-  ) {
+  if (distance < 5 && !keys.e) {
 
-    document.getElementById("gameStatus")
-      .textContent =
+    document.getElementById("gameStatus").textContent =
       "⚠️ Defender closing! Sprint or evade!";
   }
 }
@@ -366,13 +362,13 @@ function checkDefenderPressure() {
 
 function kick() {
 
-  if (!gameActive || !hasPossession)
+  if (!gameActive || !hasPossession) {
     return;
+  }
 
   hasPossession = false;
 
-  document.getElementById("gameStatus")
-    .textContent =
+  document.getElementById("gameStatus").textContent =
     "KICK! The ball is travelling forward...";
 
   ball.style.left =
@@ -384,25 +380,28 @@ function kick() {
 
   setTimeout(() => {
 
+    if (!gameActive) {
+      return;
+    }
+
     const goodKick =
       playerY < 55 &&
       Math.abs(playerX - 50) < 35;
+
 
     if (goodKick) {
 
       aflScore++;
 
-      document.getElementById("aflScore")
-        .textContent = aflScore;
+      document.getElementById("aflScore").textContent =
+        aflScore;
 
-      document.getElementById("gameStatus")
-        .textContent =
+      document.getElementById("gameStatus").textContent =
         "🏉 Great kick! Your teammate marks it.";
 
     } else {
 
-      document.getElementById("gameStatus")
-        .textContent =
+      document.getElementById("gameStatus").textContent =
         "The kick didn't work. The opposition gets the ball.";
     }
 
@@ -418,24 +417,28 @@ function kick() {
 
 function handball() {
 
-  if (!gameActive || !hasPossession)
+  if (!gameActive || !hasPossession) {
     return;
+  }
 
   hasPossession = false;
 
-  document.getElementById("gameStatus")
-    .textContent =
+  document.getElementById("gameStatus").textContent =
     "HANDPASS! You release the ball to your teammate.";
+
 
   setTimeout(() => {
 
+    if (!gameActive) {
+      return;
+    }
+
     aflScore++;
 
-    document.getElementById("aflScore")
-      .textContent = aflScore;
+    document.getElementById("aflScore").textContent =
+      aflScore;
 
-    document.getElementById("gameStatus")
-      .textContent =
+    document.getElementById("gameStatus").textContent =
       "✓ Clean handball! Your teammate keeps possession.";
 
     nextQuestion();
@@ -450,24 +453,28 @@ function handball() {
 
 function leadKick() {
 
-  if (!gameActive || !hasPossession)
+  if (!gameActive || !hasPossession) {
     return;
+  }
 
   hasPossession = false;
 
-  document.getElementById("gameStatus")
-    .textContent =
+  document.getElementById("gameStatus").textContent =
     "LEAD KICK! You kick into space for a teammate.";
+
 
   setTimeout(() => {
 
+    if (!gameActive) {
+      return;
+    }
+
     aflScore++;
 
-    document.getElementById("aflScore")
-      .textContent = aflScore;
+    document.getElementById("aflScore").textContent =
+      aflScore;
 
-    document.getElementById("gameStatus")
-      .textContent =
+    document.getElementById("gameStatus").textContent =
       "✓ Your teammate runs onto it.";
 
     nextQuestion();
@@ -482,20 +489,22 @@ function leadKick() {
 
 function evade() {
 
-  if (!gameActive)
+  if (!gameActive) {
     return;
+  }
 
-  playerX +=
-    keys["d"] ? 7 : -7;
+  if (keys.d) {
+    playerX += 7;
+  } else if (keys.a) {
+    playerX -= 7;
+  } else {
+    playerX += 7;
+  }
 
   playerX =
-    Math.max(
-      3,
-      Math.min(97, playerX)
-    );
+    Math.max(3, Math.min(97, playerX));
 
-  document.getElementById("gameStatus")
-    .textContent =
+  document.getElementById("gameStatus").textContent =
     "💨 EVASION! You burst away from the defender.";
 }
 
@@ -508,12 +517,14 @@ function nextQuestion() {
 
   gameActive = false;
 
+  // Clear all AFL keys.
+  keys = {};
+
   questionIndex++;
 
   setTimeout(() => {
 
     aflScreen.classList.remove("active");
-
     quizScreen.classList.add("active");
 
     loadQuestion();
@@ -528,14 +539,15 @@ function nextQuestion() {
 
 function finishGame() {
 
-  quizScreen.classList.remove("active");
+  gameActive = false;
+  keys = {};
 
+  quizScreen.classList.remove("active");
   aflScreen.classList.remove("active");
 
   resultScreen.classList.add("active");
 
-  document.getElementById("finalResult")
-    .innerHTML =
+  document.getElementById("finalResult").innerHTML =
     `Entertainment score: <b>${entScore}</b><br>
      AFL score: <b>${aflScore}</b><br><br>
      You completed the HSC Entertainment × AFL challenge!`;
@@ -543,131 +555,118 @@ function finishGame() {
 
 
 /* ==================================================
-   IMPORTANT KEYBOARD SYSTEM
+   AFL KEYBOARD CONTROLS
+
+   THIS IS THE IMPORTANT PART.
+
+   There is NO document-wide keyboard listener.
+
+   We only listen for AFL controls when:
+   1. AFL game is active
+   2. AFL screen is visible
+
+   Therefore typing in the Entertainment box
+   cannot trigger W/A/S/D/E/K/H/L.
 ================================================== */
 
-document.addEventListener("keydown", function(e) {
 
-  /*
-     THIS IS THE IMPORTANT PART.
+/* KEY DOWN */
 
-     If the user is typing into the Entertainment
-     answer box, NOTHING below this point happens.
+window.addEventListener("keydown", function(event) {
 
-     This means W/A/S/D/E/K/H/L work normally as
-     letters while answering.
-  */
-
-  const target = e.target;
-
-  const isTyping =
-    target instanceof HTMLInputElement ||
-    target instanceof HTMLTextAreaElement ||
-    target.isContentEditable;
-
-  if (isTyping) {
-
-    // DO NOT preventDefault.
-    // DO NOT activate AFL controls.
-
+  // NEVER interfere with typing.
+  if (
+    document.activeElement === answerBox ||
+    document.activeElement?.tagName === "TEXTAREA" ||
+    document.activeElement?.tagName === "INPUT" ||
+    document.activeElement?.isContentEditable
+  ) {
     return;
   }
 
-
-  /*
-     From here onwards we are outside the
-     answer box.
-  */
-
-  if (!gameActive)
+  // AFL controls only work during AFL.
+  if (
+    !gameActive ||
+    !aflScreen.classList.contains("active")
+  ) {
     return;
+  }
 
 
   const key =
-    e.key.toLowerCase();
+    event.key.toLowerCase();
 
 
-  const movementKeys = [
-    "w",
-    "a",
-    "s",
-    "d",
-    "shift"
-  ];
+  /*
+     Prevent browser scrolling ONLY for AFL controls.
+  */
 
+  if (
+    [
+      "w",
+      "a",
+      "s",
+      "d",
+      "shift",
+      "e",
+      "k",
+      "h",
+      "l"
+    ].includes(key)
+  ) {
 
-  if (movementKeys.includes(key)) {
-
-    e.preventDefault();
-
-    keys[key] = true;
-
-    return;
+    event.preventDefault();
   }
 
 
-  if (key === "e") {
-
-    e.preventDefault();
-
-    keys["e"] = true;
-
-    return;
-  }
+  keys[key] = true;
 
 
   if (key === "k") {
-
-    e.preventDefault();
-
     kick();
-
-    return;
   }
-
 
   if (key === "h") {
-
-    e.preventDefault();
-
     handball();
-
-    return;
   }
 
-
   if (key === "l") {
-
-    e.preventDefault();
-
     leadKick();
+  }
 
-    return;
+  if (key === "e") {
+    evade();
   }
 
 });
 
 
-document.addEventListener("keyup", function(e) {
+/* KEY UP */
 
-  const target = e.target;
+window.addEventListener("keyup", function(event) {
 
-  const isTyping =
-    target instanceof HTMLInputElement ||
-    target instanceof HTMLTextAreaElement ||
-    target.isContentEditable;
-
-
-  if (isTyping)
+  // Never interfere with typing.
+  if (
+    document.activeElement === answerBox ||
+    document.activeElement?.tagName === "TEXTAREA" ||
+    document.activeElement?.tagName === "INPUT" ||
+    document.activeElement?.isContentEditable
+  ) {
     return;
+  }
 
+  // Only relevant during AFL.
+  if (
+    !gameActive ||
+    !aflScreen.classList.contains("active")
+  ) {
+    return;
+  }
 
   const key =
-    e.key.toLowerCase();
-
+    event.key.toLowerCase();
 
   keys[key] = false;
-
 });
 
 
@@ -675,77 +674,70 @@ document.addEventListener("keyup", function(e) {
    MOBILE BUTTONS
 ========================= */
 
-document.querySelectorAll("[data-key]")
-  .forEach(button => {
+document.querySelectorAll("[data-key]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    if (!gameActive) {
+      return;
+    }
 
     const key =
       button.dataset.key;
 
-    button.addEventListener(
-      "pointerdown",
-      e => {
+    keys[key] = true;
 
-        e.preventDefault();
-
-        keys[key] = true;
-      }
-    );
-
-    button.addEventListener(
-      "pointerup",
-      e => {
-
-        e.preventDefault();
-
-        keys[key] = false;
-      }
-    );
-
-    button.addEventListener(
-      "pointerleave",
-      () => {
-
-        keys[key] = false;
-      }
-    );
-  });
-
-
-document.querySelectorAll("[data-action]")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        const action =
-          button.dataset.action;
-
-        if (action === "kick")
-          kick();
-
-        if (action === "handball")
-          handball();
-
-        if (action === "lead")
-          leadKick();
-
-        if (action === "evade")
-          evade();
-
-        if (action === "sprint")
-          keys["shift"] = true;
-
-        setTimeout(() => {
-          keys["shift"] = false;
-        }, 300);
-
-      }
-    );
+    setTimeout(() => {
+      keys[key] = false;
+    }, 150);
 
   });
 
+});
 
-/* START */
+
+document.querySelectorAll("[data-action]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    if (!gameActive) {
+      return;
+    }
+
+    const action =
+      button.dataset.action;
+
+    if (action === "sprint") {
+      keys.shift = true;
+
+      setTimeout(() => {
+        keys.shift = false;
+      }, 500);
+    }
+
+    if (action === "evade") {
+      evade();
+    }
+
+    if (action === "kick") {
+      kick();
+    }
+
+    if (action === "handball") {
+      handball();
+    }
+
+    if (action === "lead") {
+      leadKick();
+    }
+
+  });
+
+});
+
+
+/* =========================
+   START GAME
+========================= */
 
 loadQuestion();
