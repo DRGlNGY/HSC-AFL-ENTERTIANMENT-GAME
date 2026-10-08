@@ -3,161 +3,215 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Entertainment × AFL</title>
-
+  <title>HSC Entertainment × AFL</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header class="topbar">
+<header>
+  <h1>🏉 HSC ENTERTAINMENT × AFL</h1>
+  <p>Technical Crew Challenge</p>
+
+  <div class="scoreboard">
+    <span>ENTERTAINMENT <b id="entScore">0</b></span>
+    <span>AFL <b id="aflScore">0</b></span>
+  </div>
+</header>
+
+
+<!-- =========================
+     ENTERTAINMENT QUESTION
+========================= -->
+
+<section id="quizScreen" class="screen active">
+
+  <div class="quiz-card">
+
+    <div class="question-tag">
+      ENTERTAINMENT QUESTION <span id="questionNumber">1</span>
+    </div>
+
+    <h2 id="question">Loading question...</h2>
+
+    <div id="answers" class="answers"></div>
+
+    <div id="feedback"></div>
+
+    <p class="rule">
+      Answer correctly to unlock your AFL play.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     AFL GAME
+========================= -->
+
+<section id="aflScreen" class="screen">
+
+  <div class="afl-top">
 
     <div>
-      <h1>🏉 ENTERTAINMENT × AFL</h1>
-      <p>HSC Technical Crew Challenge</p>
+      <strong>PLAY <span id="playNumber">1</span></strong>
     </div>
 
-    <div class="scoreboard">
+    <div class="game-time" id="gameTime">
+      01:32
+    </div>
 
-      <div>
-        <span>ENTERTAINMENT</span>
-        <strong id="entScore">0</strong>
-      </div>
+    <div>
+      SCORE:
+      <strong id="liveScore">0.0</strong>
+    </div>
 
-      <div>
-        <span>AFL</span>
-        <strong id="aflScore">0</strong>
+  </div>
+
+
+  <div class="game-wrapper">
+
+    <div class="stadium">
+
+      <div id="aflField">
+
+        <!-- Centre -->
+        <div class="centre-line"></div>
+        <div class="centre-circle"></div>
+
+        <!-- Centre square -->
+        <div class="centre-square"></div>
+
+        <!-- Goal squares -->
+        <div class="goal-square goal-top"></div>
+        <div class="goal-square goal-bottom"></div>
+
+        <!-- Goal posts -->
+        <div class="goal-post top-left"></div>
+        <div class="goal-post top-left-small"></div>
+        <div class="goal-post top-right-small"></div>
+        <div class="goal-post top-right"></div>
+
+        <div class="goal-post bottom-left"></div>
+        <div class="goal-post bottom-left-small"></div>
+        <div class="goal-post bottom-right-small"></div>
+        <div class="goal-post bottom-right"></div>
+
+
+        <!-- PLAYERS -->
+
+        <div class="player blue p1" data-player="1"></div>
+        <div class="player blue p2" data-player="2"></div>
+        <div class="player blue p3" data-player="3"></div>
+        <div class="player blue p4" data-player="4"></div>
+        <div class="player blue p5" data-player="5"></div>
+        <div class="player blue p6" data-player="6"></div>
+        <div class="player blue p7" data-player="7"></div>
+        <div class="player blue p8" data-player="8"></div>
+        <div class="player blue p9" data-player="9"></div>
+        <div class="player blue p10" data-player="10"></div>
+        <div class="player blue p11" data-player="11"></div>
+        <div class="player blue p12" data-player="12"></div>
+        <div class="player blue p13" data-player="13"></div>
+        <div class="player blue p14" data-player="14"></div>
+        <div class="player blue p15" data-player="15"></div>
+        <div class="player blue p16" data-player="16"></div>
+        <div class="player blue p17" data-player="17"></div>
+        <div class="player blue p18" data-player="18"></div>
+
+
+        <!-- OPPOSITION -->
+
+        <div class="player red o1"></div>
+        <div class="player red o2"></div>
+        <div class="player red o3"></div>
+        <div class="player red o4"></div>
+        <div class="player red o5"></div>
+        <div class="player red o6"></div>
+        <div class="player red o7"></div>
+        <div class="player red o8"></div>
+        <div class="player red o9"></div>
+        <div class="player red o10"></div>
+        <div class="player red o11"></div>
+        <div class="player red o12"></div>
+        <div class="player red o13"></div>
+        <div class="player red o14"></div>
+        <div class="player red o15"></div>
+        <div class="player red o16"></div>
+        <div class="player red o17"></div>
+        <div class="player red o18"></div>
+
+
+        <!-- Ball -->
+
+        <div id="ball"></div>
+
+        <!-- Pass line -->
+
+        <div id="passLine"></div>
+
       </div>
 
     </div>
 
-  </header>
 
+    <aside class="game-panel">
 
-  <!-- ========================= -->
-  <!-- ENTERTAINMENT QUESTION -->
-  <!-- ========================= -->
+      <h2>LIVE PLAY</h2>
 
-  <section id="quizScreen" class="screen active">
-
-    <div class="quiz-card">
-
-      <div class="question-number" id="questionNumber">
-        Entertainment Question 1
-      </div>
-
-      <h2 id="question">
-        Loading question...
-      </h2>
-
-      <div id="answers" class="answers"></div>
-
-      <textarea
-        id="shortAnswer"
-        placeholder="Type your answer here..."
-      ></textarea>
-
-      <button id="submitAnswer">
-        SUBMIT ANSWER
-      </button>
-
-      <p id="feedback"></p>
-
-      <p class="hint">
-        Answer correctly to unlock the next AFL play.
+      <p id="playMessage">
+        Your player has the ball.
       </p>
 
-    </div>
-
-  </section>
-
-
-  <!-- ========================= -->
-  <!-- AFL GAME -->
-  <!-- ========================= -->
-
-  <section id="gameScreen" class="screen">
-
-    <div class="game-info">
-
-      <div>
-        <strong id="playNumber">PLAY 1</strong>
+      <div class="instruction">
+        <strong>HOW TO PLAY</strong>
+        <br><br>
+        Drag from the player with the ball
+        to a teammate to pass.
+        <br><br>
+        Drag toward the goals to kick.
       </div>
 
-      <div id="gameMessage">
-        Select one of your players.
+      <div class="game-status" id="gameStatus">
+        Select your next move.
       </div>
 
-      <div>
-        AFL SCORE:
-        <strong id="aflGameScore">0</strong>
+      <div class="legend">
+        <span><i class="blue-dot"></i> Your team</span>
+        <span><i class="red-dot"></i> Opposition</span>
       </div>
 
-    </div>
+    </aside>
+
+  </div>
+
+</section>
 
 
-    <div id="gameContainer">
+<!-- =========================
+     RESULTS
+========================= -->
 
-      <canvas id="gameCanvas"></canvas>
+<section id="resultScreen" class="screen">
 
-      <div id="aimLine"></div>
+  <div class="result-card">
 
-      <div id="controls">
+    <h1>🏉 FULL TIME</h1>
 
-        <div class="control-title">
-          AFL CONTROLS
-        </div>
+    <div id="finalResult"></div>
 
-        <p>
-          🖱️ Click your player to select them
-        </p>
+    <button onclick="location.reload()">
+      PLAY AGAIN
+    </button>
 
-        <p>
-          🖱️ Drag toward a teammate to pass
-        </p>
+  </div>
 
-        <p>
-          🎯 Release to kick/handball
-        </p>
-
-        <p>
-          <kbd>SPACE</kbd> Call for ball
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
+</section>
 
 
-  <!-- ========================= -->
-  <!-- RESULTS -->
-  <!-- ========================= -->
-
-  <section id="resultScreen" class="screen">
-
-    <div class="result-card">
-
-      <h1>🏆 FULL TIME</h1>
-
-      <div id="finalResult"></div>
-
-      <button onclick="location.reload()">
-        PLAY AGAIN
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- THREE.JS -->
-
-  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
