@@ -1,249 +1,277 @@
-/* =========================================================
-   ENTERTAINMENT × AFL
-   3D AFL PROTOTYPE
-========================================================= */
+/* =====================================================
+   HSC ENTERTAINMENT × AFL
+   SCORE HERO STYLE VERSION
+===================================================== */
 
 
-/* =========================================================
-   HSC QUESTIONS
-========================================================= */
+/* =====================================================
+   ENTERTAINMENT QUESTIONS
+
+   These are based on the same syllabus areas as the
+   NESA material you provided, but are reworded.
+===================================================== */
 
 const questions = [
 
   {
-    type: "mcq",
-
     question:
-      "A technician discovers a damaged power cable during bump-in. What should happen FIRST?",
+      "A technician notices a power cable with damaged insulation during bump-in. What should happen first?",
 
     options: [
-      "Increase the load on the cable",
-      "Remove the damaged cable from service",
-      "Cover the damaged section with tape",
-      "Continue using it at reduced power"
+      "Continue using it at low power",
+      "Remove it from service and report/tag it",
+      "Cover the damage with paper",
+      "Move it somewhere less visible"
     ],
 
     correct: 1
   },
 
   {
-    type: "mcq",
-
     question:
-      "Which lighting instrument generally produces a broad beam with a relatively soft edge?",
-
-    options: [
-      "Profile",
-      "Fresnel",
-      "Followspot",
-      "PAR can"
-    ],
-
-    correct: 1
-  },
-
-  {
-    type: "mcq",
-
-    question:
-      "A projector displays an image with incorrect proportions. Which setting should be checked?",
+      "A video image is being displayed wider than intended. Which setting should the technician check?",
 
     options: [
       "Gain",
       "Aspect ratio",
-      "EQ",
-      "Phase"
+      "Compression",
+      "Fader level"
     ],
 
     correct: 1
   },
 
   {
-    type: "short",
-
     question:
-      "Explain the difference between a hazard and a risk.",
+      "Which lighting lantern is generally suited to producing a broad beam with a softer edge?",
 
-    answers: [
-      "hazard",
-      "risk",
-      "harm",
-      "chance"
-    ]
+    options: [
+      "Fresnel",
+      "Profile",
+      "Followspot",
+      "LED strip"
+    ],
+
+    correct: 0
   },
 
   {
-    type: "mcq",
-
     question:
-      "What is the primary purpose of a safety chain when suspending a lighting fixture?",
+      "A lighting designer creates the intended colours, mood and appearance of a production. What is the operator's main role during the performance?",
 
     options: [
-      "To improve the colour of the light",
-      "To act as a secondary safety restraint",
+      "Write the script",
+      "Operate the lighting system according to the cues",
+      "Sell tickets",
+      "Build the scenery"
+    ],
+
+    correct: 1
+  },
+
+  {
+    question:
+      "Why is a safety chain used when suspending a lighting fixture?",
+
+    options: [
+      "To change the colour",
+      "To provide secondary protection if the primary attachment fails",
       "To increase brightness",
-      "To control the dimmer"
+      "To transmit audio"
     ],
 
     correct: 1
   },
 
   {
-    type: "mcq",
-
     question:
-      "Which role is primarily responsible for developing the artistic lighting design in consultation with the director?",
+      "A technician needs to send one video signal to several destinations. Which device is appropriate?",
 
     options: [
-      "Lighting operator",
-      "Audio technician",
-      "Lighting designer",
-      "Stagehand"
+      "Vision distribution amplifier",
+      "Dynamic microphone",
+      "Dimmer",
+      "Compressor"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "A microphone signal is very quiet at the mixing desk. Which control is normally adjusted to establish an appropriate input level?",
+
+    options: [
+      "Gain",
+      "Pan",
+      "EQ high shelf",
+      "Master mute"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "What is the primary purpose of EQ in an audio system?",
+
+    options: [
+      "Change the frequency balance of a signal",
+      "Move a lighting fixture",
+      "Change the aspect ratio",
+      "Secure a cable"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "A venue employee records a customer's enquiry so that other staff can access the information later. Which method is most appropriate?",
+
+    options: [
+      "Tell a friend",
+      "Write it on scrap paper",
+      "Record it in the organisation's customer/database system",
+      "Ignore it"
     ],
 
     correct: 2
   },
 
   {
-    type: "short",
-
     question:
-      "A microphone signal is too weak at the mixing desk. What control would normally be adjusted to establish an appropriate input level?",
-
-    answers: [
-      "gain",
-      "input gain",
-      "preamp"
-    ]
-  },
-
-  {
-    type: "mcq",
-
-    question:
-      "A venue wants to record a customer enquiry so other staff can access the information later. What is the most appropriate method?",
+      "What is the main purpose of a risk assessment before technical work begins?",
 
     options: [
-      "Tell another employee verbally",
-      "Write it on loose paper",
-      "Record it in the venue's database",
-      "Ignore the enquiry"
+      "To identify hazards and assess associated risks",
+      "To choose the show's music",
+      "To sell tickets",
+      "To determine audience seating only"
     ],
 
-    correct: 2
+    correct: 0
   },
 
   {
-    type: "mcq",
-
     question:
-      "What is one major purpose of a vision distribution amplifier?",
+      "Who does a Health and Safety Representative primarily represent in the workplace?",
 
     options: [
-      "To amplify a microphone",
-      "To distribute a video signal to multiple destinations",
-      "To change stage lighting colour",
-      "To balance audio phases"
-    ],
-
-    correct: 1
-  },
-
-  {
-    type: "short",
-
-    question:
-      "Give ONE control measure that could reduce the trip hazard created by an audio cable across a walkway.",
-
-    answers: [
-      "cable cover",
-      "cable ramp",
-      "secure",
-      "reroute",
-      "remove"
-    ]
-  },
-
-  {
-    type: "mcq",
-
-    question:
-      "Who does a Health and Safety Representative primarily represent?",
-
-    options: [
-      "Customers",
       "Workers",
-      "Venue owners",
-      "Performers only"
+      "Audience members",
+      "Ticket sellers",
+      "Equipment suppliers"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "What is one important consideration when moving large scenery during a production?",
+
+    options: [
+      "Ignore the surrounding area",
+      "Ensure workers understand the procedure and hazards",
+      "Move it as quickly as possible",
+      "Remove all communication"
     ],
 
     correct: 1
   },
 
   {
-    type: "short",
-
     question:
-      "What is the main difference between FOH audio and monitor audio?",
+      "Which connector is commonly associated with balanced professional audio connections?",
 
-    answers: [
-      "audience",
-      "performer",
-      "performers",
-      "foldback",
-      "monitor"
-    ]
+    options: [
+      "XLR",
+      "HDMI",
+      "RCA",
+      "VGA"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "What does downstage mean?",
+
+    options: [
+      "Closer to the audience",
+      "Further away from the audience",
+      "Behind the lighting desk",
+      "Outside the venue"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "What does upstage mean?",
+
+    options: [
+      "Closer to the audience",
+      "Further from the audience",
+      "Behind the audience",
+      "Under the stage"
+    ],
+
+    correct: 1
+  },
+
+  {
+    question:
+      "Why might a cable ramp be used during an event?",
+
+    options: [
+      "To protect cables and reduce trip hazards",
+      "To increase microphone gain",
+      "To focus a Fresnel",
+      "To change an image's aspect ratio"
+    ],
+
+    correct: 0
   }
 
 ];
 
 
-/* =========================================================
-   GAME VARIABLES
-========================================================= */
+/* =====================================================
+   GAME STATE
+===================================================== */
 
 let questionIndex = 0;
 
-let entScore = 0;
+let entertainmentScore = 0;
+
 let aflScore = 0;
 
-let selectedAnswer = null;
+let playNumber = 1;
+
+let currentPlayer = 0;
 
 let gameActive = false;
 
-let selectedPlayer = null;
-
-let dragging = false;
-
 let dragStart = null;
 
-let ball = null;
+let seconds = 92;
 
-let players = [];
-
-let opponents = [];
-
-let scene;
-let camera;
-let renderer;
-
-let raycaster;
-let mouse;
-
-let fieldGroup;
-
-let animationTime = 0;
+let timer;
 
 
-/* =========================================================
+/* =====================================================
    DOM
-========================================================= */
+===================================================== */
 
 const quizScreen =
   document.getElementById("quizScreen");
 
-const gameScreen =
-  document.getElementById("gameScreen");
+const aflScreen =
+  document.getElementById("aflScreen");
 
 const resultScreen =
   document.getElementById("resultScreen");
@@ -257,34 +285,93 @@ const questionText =
 const answersContainer =
   document.getElementById("answers");
 
-const shortAnswer =
-  document.getElementById("shortAnswer");
-
-const submitAnswer =
-  document.getElementById("submitAnswer");
-
 const feedback =
   document.getElementById("feedback");
 
-const entScoreDisplay =
+const entScoreElement =
   document.getElementById("entScore");
 
-const aflScoreDisplay =
+const aflScoreElement =
   document.getElementById("aflScore");
 
-const gameMessage =
-  document.getElementById("gameMessage");
+const liveScore =
+  document.getElementById("liveScore");
 
-const aflGameScore =
-  document.getElementById("aflGameScore");
+const ball =
+  document.getElementById("ball");
 
-const canvas =
-  document.getElementById("gameCanvas");
+const field =
+  document.getElementById("aflField");
+
+const passLine =
+  document.getElementById("passLine");
+
+const gameStatus =
+  document.getElementById("gameStatus");
+
+const playMessage =
+  document.getElementById("playMessage");
 
 
-/* =========================================================
-   QUESTIONS
-========================================================= */
+/* =====================================================
+   TEAM POSITIONS
+
+   Coordinates are percentages of the oval.
+===================================================== */
+
+const teamPositions = [
+
+  [50, 50],
+  [42, 45],
+  [58, 45],
+  [35, 35],
+  [65, 35],
+  [27, 50],
+  [73, 50],
+  [38, 60],
+  [62, 60],
+  [22, 67],
+  [78, 67],
+  [32, 75],
+  [68, 75],
+  [42, 84],
+  [58, 84],
+  [50, 30],
+  [45, 67],
+  [55, 67]
+
+];
+
+
+/* Opposition positions */
+
+const oppositionPositions = [
+
+  [50, 35],
+  [42, 40],
+  [58, 40],
+  [34, 45],
+  [66, 45],
+  [25, 55],
+  [75, 55],
+  [37, 58],
+  [63, 58],
+  [18, 65],
+  [82, 65],
+  [30, 70],
+  [70, 70],
+  [40, 78],
+  [60, 78],
+  [47, 60],
+  [53, 60],
+  [50, 70]
+
+];
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
 
 function loadQuestion() {
 
@@ -298,1535 +385,823 @@ function loadQuestion() {
   const q = questions[questionIndex];
 
   questionNumber.textContent =
-    `Entertainment Question ${questionIndex + 1}`;
+    questionIndex + 1;
 
   questionText.textContent =
     q.question;
 
   answersContainer.innerHTML = "";
 
-  shortAnswer.style.display = "none";
-
-  selectedAnswer = null;
-
   feedback.textContent = "";
 
-  if (q.type === "mcq") {
+  q.options.forEach((option, index) => {
 
-    answersContainer.style.display =
-      "grid";
+    const button =
+      document.createElement("button");
 
-    q.options.forEach((option, index) => {
+    button.className =
+      "answer-button";
 
-      const button =
-        document.createElement("button");
+    button.textContent =
+      `${String.fromCharCode(65 + index)}. ${option}`;
 
-      button.className =
-        "answer-button";
+    button.addEventListener(
+      "click",
+      () => checkAnswer(index, button)
+    );
 
-      button.textContent =
-        `${String.fromCharCode(65 + index)}. ${option}`;
+    answersContainer.appendChild(button);
 
-      button.addEventListener(
-        "click",
-        () => selectAnswer(index, button)
-      );
-
-      answersContainer.appendChild(button);
-
-    });
-
-  } else {
-
-    answersContainer.style.display =
-      "none";
-
-    shortAnswer.style.display =
-      "block";
-
-    setTimeout(() => {
-      shortAnswer.focus();
-    }, 100);
-
-  }
+  });
 
 }
 
 
-function selectAnswer(index, button) {
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
 
-  selectedAnswer = index;
-
-  document
-    .querySelectorAll(".answer-button")
-    .forEach(b => {
-      b.classList.remove("selected");
-    });
-
-  button.classList.add("selected");
-}
-
-
-function checkAnswer() {
+function checkAnswer(selected, clickedButton) {
 
   const q =
     questions[questionIndex];
 
-  let correct = false;
+  const buttons =
+    document.querySelectorAll(".answer-button");
+
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
 
 
-  /* MCQ */
+  if (selected === q.correct) {
 
-  if (q.type === "mcq") {
+    entertainmentScore++;
 
-    if (selectedAnswer === null) {
+    entScoreElement.textContent =
+      entertainmentScore;
 
-      feedback.textContent =
-        "Select an answer first.";
-
-      feedback.style.color =
-        "#ffd34d";
-
-      return;
-    }
-
-    correct =
-      selectedAnswer === q.correct;
-
-  }
-
-
-  /* SHORT ANSWER */
-
-  else {
-
-    const response =
-      shortAnswer.value
-        .toLowerCase()
-        .trim();
-
-    if (!response) {
-
-      feedback.textContent =
-        "Type an answer first.";
-
-      feedback.style.color =
-        "#ffd34d";
-
-      return;
-    }
-
-    correct =
-      q.answers.some(
-        word =>
-          response.includes(word)
-      );
-
-  }
-
-
-  /* CORRECT */
-
-  if (correct) {
-
-    entScore++;
-
-    entScoreDisplay.textContent =
-      entScore;
-
-    feedback.textContent =
-      "✓ Correct! AFL play unlocked.";
+    clickedButton.classList.add("correct");
 
     feedback.style.color =
       "#55e37d";
 
-    submitAnswer.disabled =
-      true;
+    feedback.textContent =
+      "✓ CORRECT — AFL PLAY UNLOCKED!";
 
     setTimeout(() => {
-
-      submitAnswer.disabled =
-        false;
 
       startAFL();
 
     }, 900);
 
-  }
+  } else {
 
+    clickedButton.classList.add("wrong");
 
-  /* INCORRECT */
-
-  else {
-
-    feedback.textContent =
-      "✗ Not quite. Try again.";
+    buttons[q.correct].classList.add("correct");
 
     feedback.style.color =
-      "#ff6b6b";
+      "#ff6969";
 
-  }
+    feedback.textContent =
+      "✗ Not quite. The correct answer is highlighted.";
 
-}
+    setTimeout(() => {
 
-
-submitAnswer.addEventListener(
-  "click",
-  checkAnswer
-);
-
-
-/* =========================================================
-   ENTER KEY
-========================================================= */
-
-shortAnswer.addEventListener(
-  "keydown",
-  event => {
-
-    if (event.key === "Enter" && !event.shiftKey) {
-
-      event.preventDefault();
-
-      checkAnswer();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   THREE.JS INITIALISATION
-========================================================= */
-
-function init3D() {
-
-  scene =
-    new THREE.Scene();
-
-  scene.background =
-    new THREE.Color(
-      0x82b5df
-    );
-
-
-  /* CAMERA */
-
-  camera =
-    new THREE.PerspectiveCamera(
-      45,
-      window.innerWidth /
-        window.innerHeight,
-      0.1,
-      3000
-    );
-
-  camera.position.set(
-    0,
-    220,
-    300
-  );
-
-  camera.lookAt(
-    0,
-    0,
-    0
-  );
-
-
-  /* RENDERER */
-
-  renderer =
-    new THREE.WebGLRenderer({
-      canvas: canvas,
-      antialias: true
-    });
-
-  renderer.setPixelRatio(
-    Math.min(
-      window.devicePixelRatio,
-      2
-    )
-  );
-
-  renderer.setSize(
-    window.innerWidth,
-    window.innerHeight -
-      90
-  );
-
-
-  /* LIGHTING */
-
-  const ambient =
-    new THREE.HemisphereLight(
-      0xffffff,
-      0x315a35,
-      2.5
-    );
-
-  scene.add(ambient);
-
-
-  const sunlight =
-    new THREE.DirectionalLight(
-      0xffffff,
-      2
-    );
-
-  sunlight.position.set(
-    100,
-    300,
-    100
-  );
-
-  scene.add(sunlight);
-
-
-  createField();
-
-  createTeams();
-
-  createBall();
-
-
-  raycaster =
-    new THREE.Raycaster();
-
-  mouse =
-    new THREE.Vector2();
-
-
-  canvas.addEventListener(
-    "pointerdown",
-    pointerDown
-  );
-
-  canvas.addEventListener(
-    "pointermove",
-    pointerMove
-  );
-
-  canvas.addEventListener(
-    "pointerup",
-    pointerUp
-  );
-
-
-  window.addEventListener(
-    "resize",
-    resizeGame
-  );
-
-
-  animate();
-
-}
-
-
-/* =========================================================
-   AFL FIELD
-========================================================= */
-
-function createField() {
-
-  fieldGroup =
-    new THREE.Group();
-
-  scene.add(
-    fieldGroup
-  );
-
-
-  /* GROUND */
-
-  const groundGeometry =
-    new THREE.CylinderGeometry(
-      190,
-      190,
-      2,
-      64
-    );
-
-  const groundMaterial =
-    new THREE.MeshStandardMaterial({
-      color: 0x18733b
-    });
-
-  const ground =
-    new THREE.Mesh(
-      groundGeometry,
-      groundMaterial
-    );
-
-  ground.scale.z =
-    1.45;
-
-  ground.position.y =
-    -2;
-
-  fieldGroup.add(
-    ground
-  );
-
-
-  /* OVAL LINES */
-
-  const lineMaterial =
-    new THREE.LineBasicMaterial({
-      color: 0xffffff
-    });
-
-
-  createOvalLine(
-    170,
-    245,
-    lineMaterial
-  );
-
-
-  /* CENTRE CIRCLE */
-
-  const circleGeometry =
-    new THREE.RingGeometry(
-      38,
-      40,
-      64
-    );
-
-  const circle =
-    new THREE.Mesh(
-      circleGeometry,
-      new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        side: THREE.DoubleSide
-      })
-    );
-
-  circle.rotation.x =
-    -Math.PI / 2;
-
-  circle.position.y =
-    0.2;
-
-  fieldGroup.add(
-    circle
-  );
-
-
-  /* CENTRE LINE */
-
-  const centreGeometry =
-    new THREE.BoxGeometry(
-      2,
-      0.5,
-      490
-    );
-
-  const centreLine =
-    new THREE.Mesh(
-      centreGeometry,
-      new THREE.MeshBasicMaterial({
-        color: 0xffffff
-      })
-    );
-
-  centreLine.position.y =
-    0.2;
-
-  fieldGroup.add(
-    centreLine
-  );
-
-
-  /* GOAL POSTS */
-
-  createGoal(
-    -245
-  );
-
-  createGoal(
-    245
-  );
-
-}
-
-
-/* =========================================================
-   OVAL LINE
-========================================================= */
-
-function createOvalLine(
-  radiusX,
-  radiusZ,
-  material
-) {
-
-  const points = [];
-
-  for (
-    let i = 0;
-    i <= 128;
-    i++
-  ) {
-
-    const angle =
-      (i / 128) *
-      Math.PI *
-      2;
-
-    points.push(
-      new THREE.Vector3(
-        Math.cos(angle) *
-          radiusX,
-
-        0.3,
-
-        Math.sin(angle) *
-          radiusZ
-      )
-    );
-
-  }
-
-  const geometry =
-    new THREE.BufferGeometry()
-      .setFromPoints(points);
-
-  const line =
-    new THREE.Line(
-      geometry,
-      material
-    );
-
-  fieldGroup.add(
-    line
-  );
-
-}
-
-
-/* =========================================================
-   GOALS — 4 POSTS EACH END
-========================================================= */
-
-function createGoal(z) {
-
-  const postMaterial =
-    new THREE.MeshStandardMaterial({
-      color: 0xffffff
-    });
-
-
-  /*
-     AFL goal layout:
-
-       behind post
-       goal post
-       goal post
-       behind post
-  */
-
-  const positions = [
-    -15,
-    -5,
-    5,
-    15
-  ];
-
-
-  positions.forEach(
-    x => {
-
-      const height =
-        Math.abs(x) <= 5
-          ? 22
-          : 12;
-
-
-      const geometry =
-        new THREE.CylinderGeometry(
-          1.3,
-          1.3,
-          height,
-          16
-        );
-
-
-      const post =
-        new THREE.Mesh(
-          geometry,
-          postMaterial
-        );
-
-
-      post.position.set(
-        x,
-        height / 2,
-        z
-      );
-
-
-      fieldGroup.add(
-        post
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   PLAYERS
-========================================================= */
-
-function createTeams() {
-
-  players = [];
-
-  opponents = [];
-
-
-  /*
-     18 PLAYER AFL FORMATION
-
-     These positions are approximate
-     starting positions.
-  */
-
-  const bluePositions = [
-
-    [-70, -150],
-    [0, -160],
-    [70, -150],
-
-    [-110, -100],
-    [-35, -105],
-    [35, -105],
-    [110, -100],
-
-    [-130, -35],
-    [-60, -40],
-    [0, -20],
-    [60, -40],
-    [130, -35],
-
-    [-100, 45],
-    [-35, 60],
-    [35, 60],
-    [100, 45],
-
-    [-45, 120],
-    [45, 120]
-
-  ];
-
-
-  const redPositions =
-    bluePositions.map(
-      p => [-p[0], -p[1]]
-    );
-
-
-  bluePositions.forEach(
-    (position, index) => {
-
-      const player =
-        createPlayer(
-          0x1476ff,
-          position[0],
-          position[1],
-          index
-        );
-
-      players.push(
-        player
-      );
-
-    }
-  );
-
-
-  redPositions.forEach(
-    (position, index) => {
-
-      const player =
-        createPlayer(
-          0xe53935,
-          position[0],
-          position[1],
-          index
-        );
-
-      opponents.push(
-        player
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   PLAYER MODEL
-========================================================= */
-
-function createPlayer(
-  colour,
-  x,
-  z,
-  index
-) {
-
-  const group =
-    new THREE.Group();
-
-
-  /* BODY */
-
-  const bodyGeometry =
-    new THREE.CapsuleGeometry(
-      4,
-      8,
-      6,
-      12
-    );
-
-  const bodyMaterial =
-    new THREE.MeshStandardMaterial({
-      color: colour
-    });
-
-  const body =
-    new THREE.Mesh(
-      bodyGeometry,
-      bodyMaterial
-    );
-
-  body.position.y =
-    7;
-
-  group.add(
-    body
-  );
-
-
-  /* HEAD */
-
-  const headGeometry =
-    new THREE.SphereGeometry(
-      3.2,
-      16,
-      16
-    );
-
-  const head =
-    new THREE.Mesh(
-      headGeometry,
-      new THREE.MeshStandardMaterial({
-        color: 0xd49b78
-      })
-    );
-
-  head.position.y =
-    17;
-
-  group.add(
-    head
-  );
-
-
-  group.position.set(
-    x,
-    0,
-    z
-  );
-
-
-  group.userData = {
-
-    team:
-      colour === 0x1476ff
-        ? "blue"
-        : "red",
-
-    index:
-      index,
-
-    speed:
-      0.25 +
-      Math.random() *
-      0.15
-
-  };
-
-
-  scene.add(
-    group
-  );
-
-
-  return group;
-
-}
-
-
-/* =========================================================
-   BALL
-========================================================= */
-
-function createBall() {
-
-  const geometry =
-    new THREE.SphereGeometry(
-      2.8,
-      16,
-      16
-    );
-
-  const material =
-    new THREE.MeshStandardMaterial({
-      color: 0x8a451c
-    });
-
-  ball =
-    new THREE.Mesh(
-      geometry,
-      material
-    );
-
-  ball.position.set(
-    0,
-    5,
-    0
-  );
-
-  scene.add(
-    ball
-  );
-
-}
-
-
-/* =========================================================
-   START AFL PLAY
-========================================================= */
-
-function startAFL() {
-
-  quizScreen.classList.remove(
-    "active"
-  );
-
-  gameScreen.classList.add(
-    "active"
-  );
-
-  gameActive = true;
-
-  selectedPlayer = null;
-
-  gameMessage.textContent =
-    "Select one of your players.";
-
-  positionBallWithPlayer();
-
-}
-
-
-/* =========================================================
-   SELECT PLAYER
-========================================================= */
-
-function pointerDown(event) {
-
-  if (!gameActive)
-    return;
-
-
-  const rect =
-    canvas.getBoundingClientRect();
-
-
-  mouse.x =
-    ((event.clientX - rect.left) /
-      rect.width) *
-      2 -
-    1;
-
-
-  mouse.y =
-    -(
-      (event.clientY - rect.top) /
-        rect.height
-    ) *
-      2 +
-    1;
-
-
-  raycaster.setFromCamera(
-    mouse,
-    camera
-  );
-
-
-  const objects = [];
-
-  players.forEach(
-    p => {
-
-      p.traverse(
-        child => {
-
-          if (
-            child.isMesh
-          )
-            objects.push(child);
-
-        }
-      );
-
-    }
-  );
-
-
-  const hits =
-    raycaster.intersectObjects(
-      objects
-    );
-
-
-  if (hits.length === 0)
-    return;
-
-
-  let object =
-    hits[0].object;
-
-
-  while (
-    object.parent &&
-    !players.includes(object)
-  ) {
-
-    object =
-      object.parent;
-
-  }
-
-
-  if (
-    players.includes(object)
-  ) {
-
-    selectedPlayer =
-      object;
-
-    dragging = true;
-
-    dragStart = {
-      x: event.clientX,
-      y: event.clientY
-    };
-
-
-    gameMessage.textContent =
-      "Drag toward a teammate to pass the ball.";
-
-  }
-
-}
-
-
-function pointerMove(event) {
-
-  if (
-    !dragging ||
-    !selectedPlayer
-  )
-    return;
-
-
-  drawAim(
-    event.clientX,
-    event.clientY
-  );
-
-}
-
-
-function pointerUp(event) {
-
-  if (
-    !dragging ||
-    !selectedPlayer
-  )
-    return;
-
-
-  dragging = false;
-
-
-  clearAim();
-
-
-  performPass(
-    event.clientX,
-    event.clientY
-  );
-
-}
-
-
-/* =========================================================
-   PASSING
-========================================================= */
-
-function performPass(
-  x,
-  y
-) {
-
-  if (!selectedPlayer)
-    return;
-
-
-  /*
-     Work out direction from
-     mouse movement.
-  */
-
-  const dx =
-    x -
-    dragStart.x;
-
-  const dy =
-    y -
-    dragStart.y;
-
-
-  if (
-    Math.abs(dx) < 15 &&
-    Math.abs(dy) < 15
-  ) {
-
-    gameMessage.textContent =
-      "Drag further to make a pass.";
-
-    return;
-
-  }
-
-
-  /*
-     Find teammate in the
-     direction of the drag.
-  */
-
-  const direction =
-    new THREE.Vector2(
-      dx,
-      dy
-    ).normalize();
-
-
-  let bestPlayer =
-    null;
-
-  let bestScore =
-    Infinity;
-
-
-  players.forEach(
-    teammate => {
-
-      if (
-        teammate ===
-        selectedPlayer
-      )
-        return;
-
-
-      const diff =
-        new THREE.Vector3()
-          .subVectors(
-            teammate.position,
-            selectedPlayer.position
-          );
-
-
-      const distance =
-        diff.length();
-
-
-      if (
-        distance > 180
-      )
-        return;
-
-
-      /*
-         Approximate screen
-         direction.
-      */
-
-      const score =
-        Math.abs(
-          diff.x -
-          direction.x *
-            distance
-        ) +
-        Math.abs(
-          diff.z +
-          direction.y *
-            distance
-        );
-
-
-      if (
-        score <
-        bestScore
-      ) {
-
-        bestScore =
-          score;
-
-        bestPlayer =
-          teammate;
-
-      }
-
-    }
-  );
-
-
-  if (!bestPlayer) {
-
-    gameMessage.textContent =
-      "No teammate in that direction.";
-
-    return;
-
-  }
-
-
-  kickBallTo(
-    bestPlayer
-  );
-
-}
-
-
-/* =========================================================
-   BALL MOVEMENT
-========================================================= */
-
-function kickBallTo(
-  target
-) {
-
-  const start =
-    selectedPlayer.position.clone();
-
-  const end =
-    target.position.clone();
-
-
-  end.y = 5;
-
-
-  const duration =
-    700;
-
-
-  const startTime =
-    performance.now();
-
-
-  gameMessage.textContent =
-    "PASS!";
-
-
-  function animatePass(
-    now
-  ) {
-
-    const progress =
-      Math.min(
-        (now - startTime) /
-          duration,
-        1
-      );
-
-
-    ball.position.lerpVectors(
-      start,
-      end,
-      progress
-    );
-
-
-    ball.position.y =
-      5 +
-      Math.sin(
-        progress *
-          Math.PI
-      ) *
-      18;
-
-
-    if (
-      progress <
-      1
-    ) {
-
-      requestAnimationFrame(
-        animatePass
-      );
-
-    } else {
-
-      ball.position.copy(
-        end
-      );
-
-      receiveBall(
-        target
-      );
-
-    }
-
-  }
-
-
-  requestAnimationFrame(
-    animatePass
-  );
-
-}
-
-
-/* =========================================================
-   RECEIVE
-========================================================= */
-
-function receiveBall(
-  player
-) {
-
-  selectedPlayer =
-    player;
-
-  aflScore++;
-
-  aflScoreDisplay.textContent =
-    aflScore;
-
-  document.getElementById(
-    "aflScore"
-  ).textContent =
-    aflScore;
-
-
-  gameMessage.textContent =
-    "✓ Clean possession!";
-
-
-  /*
-     After a successful play,
-     return to the HSC question.
-  */
-
-  setTimeout(
-    nextQuestion,
-    900
-  );
-
-}
-
-
-/* =========================================================
-   CALL FOR BALL
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    /*
-       IMPORTANT:
-       Ignore game keyboard
-       controls while typing
-       HSC answers.
-    */
-
-    if (
-      document.activeElement ===
-      shortAnswer
-    ) {
-
-      return;
-
-    }
-
-
-    if (
-      event.code ===
-      "Space" &&
-      gameActive
-    ) {
-
-      event.preventDefault();
-
-
-      if (
-        selectedPlayer
-      ) {
-
-        gameMessage.textContent =
-          "📢 You called for the ball!";
-
-      }
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   AIM LINE
-========================================================= */
-
-function drawAim(
-  x,
-  y
-) {
-
-  const dx =
-    x -
-    dragStart.x;
-
-  const dy =
-    y -
-    dragStart.y;
-
-
-  const length =
-    Math.min(
-      Math.sqrt(
-        dx * dx +
-        dy * dy
-      ),
-      250
-    );
-
-
-  const angle =
-    Math.atan2(
-      dy,
-      dx
-    );
-
-
-  const line =
-    document.getElementById(
-      "aimLine"
-    );
-
-
-  line.style.display =
-    "block";
-
-
-  line.style.left =
-    `${dragStart.x}px`;
-
-  line.style.top =
-    `${dragStart.y}px`;
-
-  line.style.width =
-    `${length}px`;
-
-  line.style.transform =
-    `rotate(${angle}rad)`;
-
-}
-
-
-function clearAim() {
-
-  document.getElementById(
-    "aimLine"
-  ).style.display =
-    "none";
-
-}
-
-
-/* =========================================================
-   BALL POSITION
-========================================================= */
-
-function positionBallWithPlayer() {
-
-  if (
-    selectedPlayer
-  ) {
-
-    ball.position.set(
-      selectedPlayer.position.x,
-      5,
-      selectedPlayer.position.z
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   AI
-========================================================= */
-
-function updateAI() {
-
-  if (!gameActive)
-    return;
-
-
-  opponents.forEach(
-    opponent => {
-
-      if (
-        !selectedPlayer
-      )
-        return;
-
-
-      const target =
-        selectedPlayer.position;
-
-
-      const direction =
-        new THREE.Vector3()
-          .subVectors(
-            target,
-            opponent.position
-          );
-
-
-      const distance =
-        direction.length();
-
-
-      if (
-        distance >
-        35
-      ) {
-
-        direction.normalize();
-
-
-        opponent.position.x +=
-          direction.x *
-          opponent.userData.speed;
-
-        opponent.position.z +=
-          direction.z *
-          opponent.userData.speed;
-
-      }
-
-    }
-  );
-
-
-  /*
-     Other teammates
-     reposition naturally.
-  */
-
-  players.forEach(
-    (player, index) => {
-
-      if (
-        player ===
-        selectedPlayer
-      )
-        return;
-
-
-      const time =
-        animationTime *
-        0.001;
-
-
-      player.position.x +=
-        Math.sin(
-          time +
-          index
-        ) *
-        0.03;
-
-      player.position.z +=
-        Math.cos(
-          time * 0.8 +
-          index
-        ) *
-        0.03;
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   NEXT QUESTION
-========================================================= */
-
-function nextQuestion() {
-
-  gameActive = false;
-
-  questionIndex++;
-
-
-  setTimeout(
-    () => {
-
-      gameScreen.classList.remove(
-        "active"
-      );
-
-      quizScreen.classList.add(
-        "active"
-      );
+      questionIndex++;
 
       loadQuestion();
 
-    },
-    800
+    }, 1700);
+
+  }
+
+}
+
+
+/* =====================================================
+   START AFL
+===================================================== */
+
+function startAFL() {
+
+  quizScreen.classList.remove("active");
+
+  aflScreen.classList.add("active");
+
+  gameActive = true;
+
+  currentPlayer =
+    Math.floor(Math.random() * 18);
+
+  positionPlayers();
+
+  giveBallTo(currentPlayer);
+
+  document.getElementById("playNumber").textContent =
+    playNumber;
+
+  playMessage.textContent =
+    "You have possession. Drag from the ball carrier to a teammate — or toward the goals to kick.";
+
+  gameStatus.textContent =
+    "Choose your next move.";
+
+  startClock();
+
+}
+
+
+/* =====================================================
+   POSITION PLAYERS
+===================================================== */
+
+function positionPlayers() {
+
+  teamPositions.forEach((position, index) => {
+
+    const player =
+      document.querySelector(
+        `.p${index + 1}`
+      );
+
+    player.style.left =
+      `${position[0]}%`;
+
+    player.style.top =
+      `${position[1]}%`;
+
+  });
+
+
+  oppositionPositions.forEach((position, index) => {
+
+    const player =
+      document.querySelector(
+        `.o${index + 1}`
+      );
+
+    player.style.left =
+      `${position[0]}%`;
+
+    player.style.top =
+      `${position[1]}%`;
+
+  });
+
+}
+
+
+/* =====================================================
+   GIVE BALL
+===================================================== */
+
+function giveBallTo(index) {
+
+  currentPlayer =
+    index;
+
+  document
+    .querySelectorAll(".blue")
+    .forEach(player => {
+
+      player.classList.remove("selected");
+
+    });
+
+
+  const player =
+    document.querySelector(
+      `.p${index + 1}`
+    );
+
+  player.classList.add("selected");
+
+  moveBallToPlayer(player);
+
+}
+
+
+/* =====================================================
+   MOVE BALL
+===================================================== */
+
+function moveBallToPlayer(player) {
+
+  const rect =
+    field.getBoundingClientRect();
+
+  const playerRect =
+    player.getBoundingClientRect();
+
+  const x =
+    ((playerRect.left + playerRect.width / 2 - rect.left)
+      / rect.width) * 100;
+
+  const y =
+    ((playerRect.top + playerRect.height / 2 - rect.top)
+      / rect.height) * 100;
+
+  ball.style.left =
+    `${x}%`;
+
+  ball.style.top =
+    `${y}%`;
+
+}
+
+
+/* =====================================================
+   DRAG PASS SYSTEM
+===================================================== */
+
+document
+  .querySelectorAll(".blue")
+  .forEach(player => {
+
+    player.addEventListener(
+      "pointerdown",
+      startDrag
+    );
+
+  });
+
+
+function startDrag(event) {
+
+  if (!gameActive) return;
+
+  const player =
+    event.currentTarget;
+
+  const playerNumber =
+    Number(
+      player.dataset.player
+    ) - 1;
+
+  if (playerNumber !== currentPlayer) {
+
+    gameStatus.textContent =
+      "That player doesn't have the ball.";
+
+    return;
+
+  }
+
+
+  event.preventDefault();
+
+  dragStart =
+    player;
+
+  player.setPointerCapture(
+    event.pointerId
+  );
+
+  passLine.style.display =
+    "block";
+
+  updatePassLine(
+    event.clientX,
+    event.clientY
+  );
+
+
+  player.addEventListener(
+    "pointermove",
+    dragMove
+  );
+
+  player.addEventListener(
+    "pointerup",
+    endDrag,
+    { once: true }
   );
 
 }
 
 
-/* =========================================================
-   RESULTS
-========================================================= */
+/* =====================================================
+   DRAG MOVE
+===================================================== */
+
+function dragMove(event) {
+
+  updatePassLine(
+    event.clientX,
+    event.clientY
+  );
+
+}
+
+
+/* =====================================================
+   DRAW PASS LINE
+===================================================== */
+
+function updatePassLine(
+  clientX,
+  clientY
+) {
+
+  if (!dragStart) return;
+
+  const fieldRect =
+    field.getBoundingClientRect();
+
+  const startRect =
+    dragStart.getBoundingClientRect();
+
+  const x1 =
+    startRect.left +
+    startRect.width / 2 -
+    fieldRect.left;
+
+  const y1 =
+    startRect.top +
+    startRect.height / 2 -
+    fieldRect.top;
+
+  const x2 =
+    clientX -
+    fieldRect.left;
+
+  const y2 =
+    clientY -
+    fieldRect.top;
+
+  const dx =
+    x2 - x1;
+
+  const dy =
+    y2 - y1;
+
+  const distance =
+    Math.sqrt(
+      dx * dx +
+      dy * dy
+    );
+
+  const angle =
+    Math.atan2(dy, dx) *
+    180 /
+    Math.PI;
+
+  passLine.style.left =
+    `${x1}px`;
+
+  passLine.style.top =
+    `${y1}px`;
+
+  passLine.style.width =
+    `${distance}px`;
+
+  passLine.style.transform =
+    `rotate(${angle}deg)`;
+
+}
+
+
+/* =====================================================
+   END DRAG
+===================================================== */
+
+function endDrag(event) {
+
+  if (!dragStart) return;
+
+  const player =
+    dragStart;
+
+  player.removeEventListener(
+    "pointermove",
+    dragMove
+  );
+
+  passLine.style.display =
+    "none";
+
+
+  const fieldRect =
+    field.getBoundingClientRect();
+
+  const targetX =
+    ((event.clientX - fieldRect.left)
+      / fieldRect.width) * 100;
+
+  const targetY =
+    ((event.clientY - fieldRect.top)
+      / fieldRect.height) * 100;
+
+
+  dragStart = null;
+
+
+  /* Check whether player dragged to a teammate */
+
+  const target =
+    findClosestTeammate(
+      targetX,
+      targetY
+    );
+
+
+  if (target !== null) {
+
+    makePass(target);
+
+    return;
+
+  }
+
+
+  /* Otherwise kick */
+
+  kickBall(
+    targetX,
+    targetY
+  );
+
+}
+
+
+/* =====================================================
+   FIND TEAMMATE
+===================================================== */
+
+function findClosestTeammate(
+  x,
+  y
+) {
+
+  let closest = null;
+
+  let closestDistance = 8;
+
+
+  teamPositions.forEach(
+    (position, index) => {
+
+      if (index === currentPlayer)
+        return;
+
+      const distance =
+        Math.hypot(
+          x - position[0],
+          y - position[1]
+        );
+
+      if (
+        distance < closestDistance
+      ) {
+
+        closestDistance =
+          distance;
+
+        closest =
+          index;
+
+      }
+
+    }
+  );
+
+
+  return closest;
+
+}
+
+
+/* =====================================================
+   PASS
+===================================================== */
+
+function makePass(target) {
+
+  gameStatus.textContent =
+    "PASS AWAY!";
+
+  playMessage.textContent =
+    "Your teammate receives the ball. The defence is reacting.";
+
+  const success =
+    calculatePassSuccess(
+      target
+    );
+
+
+  if (success) {
+
+    aflScore += 1;
+
+    liveScore.textContent =
+      `${Math.floor(aflScore / 6)}.${aflScore % 6}`;
+
+    gameStatus.textContent =
+      "✓ Clean pass!";
+
+    moveDefenders();
+
+    setTimeout(() => {
+
+      giveBallTo(target);
+
+      continuePlay();
+
+    }, 650);
+
+  } else {
+
+    gameStatus.textContent =
+      "✗ Intercepted!";
+
+    setTimeout(() => {
+
+      oppositionWinsBall();
+
+    }, 700);
+
+  }
+
+}
+
+
+/* =====================================================
+   PASS SUCCESS
+===================================================== */
+
+function calculatePassSuccess(
+  target
+) {
+
+  const targetPosition =
+    teamPositions[target];
+
+  let nearestDefender =
+    100;
+
+
+  oppositionPositions.forEach(
+    defender => {
+
+      const distance =
+        Math.hypot(
+          targetPosition[0] - defender[0],
+          targetPosition[1] - defender[1]
+        );
+
+      nearestDefender =
+        Math.min(
+          nearestDefender,
+          distance
+        );
+
+    }
+  );
+
+
+  return nearestDefender > 7;
+
+}
+
+
+/* =====================================================
+   DEFENDERS REACT
+===================================================== */
+
+function moveDefenders() {
+
+  const defenders =
+    document.querySelectorAll(".red");
+
+
+  defenders.forEach(
+    (defender, index) => {
+
+      const target =
+        teamPositions[
+          (currentPlayer + index + 1)
+          % teamPositions.length
+        ];
+
+
+      if (
+        Math.random() < .7
+      ) {
+
+        defender.style.left =
+          `${target[0] + (Math.random() * 5 - 2.5)}%`;
+
+        defender.style.top =
+          `${target[1] + (Math.random() * 5 - 2.5)}%`;
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   KICK
+===================================================== */
+
+function kickBall(
+  targetX,
+  targetY
+) {
+
+  const attackingGoal =
+    targetY < 20 ||
+    targetY > 80;
+
+
+  if (!attackingGoal) {
+
+    gameStatus.textContent =
+      "Try dragging toward the goals to kick.";
+
+    return;
+
+  }
+
+
+  gameStatus.textContent =
+    "KICK!";
+
+  playMessage.textContent =
+    "The ball is travelling toward goal...";
+
+
+  ball.style.left =
+    `${targetX}%`;
+
+  ball.style.top =
+    `${targetY}%`;
+
+
+  setTimeout(() => {
+
+    const central =
+      Math.abs(
+        targetX - 50
+      ) < 18;
+
+
+    if (central) {
+
+      aflScore += 6;
+
+      liveScore.textContent =
+        `${Math.floor(aflScore / 6)}.${aflScore % 6}`;
+
+      gameStatus.textContent =
+        "🏉 GOAL! SIX POINTS!";
+
+    } else {
+
+      aflScore += 1;
+
+      liveScore.textContent =
+        `${Math.floor(aflScore / 6)}.${aflScore % 6}`;
+
+      gameStatus.textContent =
+        "1 POINT — BEHIND!";
+
+    }
+
+
+    setTimeout(
+      continuePlay,
+      1000
+    );
+
+  }, 700);
+
+}
+
+
+/* =====================================================
+   OPPOSITION WINS BALL
+===================================================== */
+
+function oppositionWinsBall() {
+
+  gameStatus.textContent =
+    "The opposition has won possession.";
+
+  playMessage.textContent =
+    "Turnover! Get ready for the next contest.";
+
+  setTimeout(() => {
+
+    continuePlay();
+
+  }, 1200);
+
+}
+
+
+/* =====================================================
+   CONTINUE PLAY
+===================================================== */
+
+function continuePlay() {
+
+  gameActive = false;
+
+  clearInterval(timer);
+
+  playNumber++;
+
+  questionIndex++;
+
+  setTimeout(() => {
+
+    aflScreen.classList.remove("active");
+
+    quizScreen.classList.add("active");
+
+    gameActive = false;
+
+    loadQuestion();
+
+  }, 500);
+
+}
+
+
+/* =====================================================
+   GAME CLOCK
+===================================================== */
+
+function startClock() {
+
+  clearInterval(timer);
+
+  seconds = 92;
+
+  updateClock();
+
+
+  timer =
+    setInterval(() => {
+
+      if (!gameActive)
+        return;
+
+      seconds--;
+
+      updateClock();
+
+
+      if (seconds <= 0) {
+
+        clearInterval(timer);
+
+        gameStatus.textContent =
+          "Time!";
+
+        continuePlay();
+
+      }
+
+    }, 1000);
+
+}
+
+
+function updateClock() {
+
+  const minutes =
+    Math.floor(seconds / 60);
+
+  const remaining =
+    seconds % 60;
+
+  document.getElementById(
+    "gameTime"
+  ).textContent =
+    `${String(minutes).padStart(2, "0")}:${String(remaining).padStart(2, "0")}`;
+
+}
+
+
+/* =====================================================
+   FINISH
+===================================================== */
 
 function finishGame() {
 
-  gameScreen.classList.remove(
+  clearInterval(timer);
+
+  quizScreen.classList.remove(
     "active"
   );
 
-  quizScreen.classList.remove(
+  aflScreen.classList.remove(
     "active"
   );
 
@@ -1835,24 +1210,35 @@ function finishGame() {
   );
 
 
+  const goals =
+    Math.floor(aflScore / 6);
+
+  const behinds =
+    aflScore % 6;
+
+
   document.getElementById(
     "finalResult"
   ).innerHTML = `
 
     <p>
-      Entertainment:
-      <strong>${entScore}</strong>
+      Entertainment questions correct:
+      <strong>${entertainmentScore}</strong>
     </p>
 
     <p>
-      AFL:
+      AFL score:
+      <strong>${goals}.${behinds}</strong>
+    </p>
+
+    <p>
+      Total AFL points:
       <strong>${aflScore}</strong>
     </p>
 
     <p>
       You completed the
-      Entertainment × AFL
-      HSC challenge!
+      <strong>HSC Entertainment × AFL Challenge!</strong>
     </p>
 
   `;
@@ -1860,105 +1246,8 @@ function finishGame() {
 }
 
 
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-function animate() {
-
-  requestAnimationFrame(
-    animate
-  );
-
-
-  animationTime =
-    performance.now();
-
-
-  updateAI();
-
-
-  if (
-    selectedPlayer &&
-    gameActive
-  ) {
-
-    /*
-       Slight camera follow.
-    */
-
-    const target =
-      selectedPlayer.position;
-
-
-    camera.position.x +=
-      (
-        target.x -
-        camera.position.x
-      ) *
-      0.02;
-
-
-    camera.position.z +=
-      (
-        target.z +
-        300 -
-        camera.position.z
-      ) *
-      0.02;
-
-
-    camera.lookAt(
-      target.x,
-      0,
-      target.z
-    );
-
-  }
-
-
-  renderer.render(
-    scene,
-    camera
-  );
-
-}
-
-
-/* =========================================================
-   RESIZE
-========================================================= */
-
-function resizeGame() {
-
-  if (!renderer)
-    return;
-
-
-  camera.aspect =
-    window.innerWidth /
-    (
-      window.innerHeight -
-      90
-    );
-
-
-  camera.updateProjectionMatrix();
-
-
-  renderer.setSize(
-    window.innerWidth,
-    window.innerHeight -
-      90
-  );
-
-}
-
-
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
-
-init3D();
+===================================================== */
 
 loadQuestion();
