@@ -2,47 +2,85 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at top, #17243a, #070b12 70%);
+  background: #07100b;
   color: white;
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-  border-bottom: 1px solid #26364d;
-  background: rgba(5, 9, 16, 0.9);
-}
 
-header h1 {
-  margin: 0;
-  font-size: 30px;
-}
+/* ========================= */
+/* TOP BAR */
+/* ========================= */
 
-header p {
-  margin: 6px 0 15px;
-  color: #aebbd0;
-}
+.topbar {
+  height: 90px;
+  background:
+    linear-gradient(
+      90deg,
+      #07130b,
+      #10251a,
+      #07130b
+    );
 
-.scores {
+  border-bottom: 2px solid #2d5138;
+
   display: flex;
-  justify-content: center;
-  gap: 35px;
-  font-size: 18px;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 25px;
+
+  position: relative;
+  z-index: 20;
 }
 
-.scores b {
+.topbar h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.topbar p {
+  margin: 4px 0 0;
+  color: #9bb3a0;
+}
+
+.scoreboard {
+  display: flex;
+  gap: 30px;
+}
+
+.scoreboard div {
+  text-align: center;
+}
+
+.scoreboard span {
+  display: block;
+  color: #8ea397;
+  font-size: 11px;
+}
+
+.scoreboard strong {
+  display: block;
+  font-size: 25px;
   color: #55e37d;
 }
 
+
+/* ========================= */
+/* SCREENS */
+/* ========================= */
+
 .screen {
   display: none;
-  min-height: calc(100vh - 130px);
-  padding: 35px 20px;
+  width: 100%;
+  height: calc(100vh - 90px);
 }
 
 .screen.active {
@@ -50,457 +88,360 @@ header p {
 }
 
 
-/* =========================
-   QUIZ
-========================= */
+/* ========================= */
+/* QUIZ */
+/* ========================= */
+
+#quizScreen {
+  overflow-y: auto;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #193c27,
+      #07100b 70%
+    );
+
+  padding: 50px 20px;
+}
 
 .quiz-card {
-  width: min(800px, 100%);
-  margin: 50px auto;
-  padding: 35px;
-  border-radius: 20px;
-  background: rgba(18, 28, 43, 0.96);
-  border: 1px solid #30435e;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  width: min(850px, 100%);
+  margin: auto;
+
+  padding: 40px;
+
+  border-radius: 22px;
+
+  background:
+    rgba(12, 25, 17, 0.97);
+
+  border: 1px solid #31563b;
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,0.55);
 }
 
-.question-label {
+.question-number {
   color: #55e37d;
   font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.question-type {
-  display: inline-block;
-  padding: 6px 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  background: #26364d;
-  color: #aebbd0;
-  font-size: 12px;
-  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .quiz-card h2 {
+  font-size: 25px;
   line-height: 1.45;
-  font-size: 24px;
 }
 
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 
-/* =========================
-   SHORT ANSWER
-========================= */
+  margin-top: 25px;
+}
+
+.answer-button {
+  padding: 18px;
+
+  background: #16271b;
+  color: white;
+
+  border: 2px solid #31563b;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  font-size: 16px;
+
+  transition: 0.15s;
+}
+
+.answer-button:hover {
+  background: #23412b;
+  border-color: #55e37d;
+}
+
+.answer-button.selected {
+  background: #236c3a;
+  border-color: #55e37d;
+}
 
 textarea {
   width: 100%;
-  min-height: 150px;
-  resize: vertical;
+  min-height: 140px;
+
   margin-top: 20px;
-  padding: 18px;
-  border-radius: 12px;
-  border: 2px solid #354966;
-  background: #080d15;
+
+  padding: 15px;
+
+  resize: vertical;
+
+  background: #060b08;
+
   color: white;
-  font-size: 18px;
-  font-family: Arial, sans-serif;
-  outline: none;
-  display: block;
+
+  border: 2px solid #31563b;
+  border-radius: 12px;
+
+  font-size: 17px;
+
+  font-family: Arial;
 }
 
 textarea:focus {
+  outline: none;
   border-color: #55e37d;
-  box-shadow: 0 0 0 3px rgba(85, 227, 125, 0.12);
 }
 
-
-/* =========================
-   MULTIPLE CHOICE
-========================= */
-
-.multiple-choice {
-  display: none;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+#submitAnswer {
   margin-top: 20px;
-}
 
-.multiple-choice button {
-  width: 100%;
-  min-height: 70px;
-  margin: 0;
-  padding: 15px;
-  border: 2px solid #354966;
-  border-radius: 12px;
-  background: #101927;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.2s;
-}
+  padding: 15px 25px;
 
-.multiple-choice button:hover:not(:disabled) {
-  background: #1b2b42;
-  border-color: #55e37d;
-  transform: translateY(-2px);
-}
-
-.multiple-choice button.correct {
-  background: #145c32;
-  border-color: #55e37d;
-}
-
-.multiple-choice button.incorrect {
-  background: #642222;
-  border-color: #ff6868;
-}
-
-.multiple-choice button:disabled {
-  cursor: default;
-}
-
-
-/* =========================
-   GENERAL BUTTONS
-========================= */
-
-button {
-  border: 0;
-  border-radius: 10px;
-  padding: 13px 20px;
-  margin-top: 15px;
   background: #55e37d;
-  color: #07100a;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 15px;
-}
+  color: #061009;
 
-button:hover {
-  filter: brightness(1.1);
-  transform: translateY(-1px);
+  border: none;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  font-size: 16px;
 }
 
 #feedback {
   min-height: 25px;
+
   font-weight: bold;
-  margin-top: 18px;
 }
 
 .hint {
-  color: #8291a7;
-  font-size: 14px;
+  color: #7d9383;
 }
 
 
-/* =========================
-   AFL
-========================= */
+/* ========================= */
+/* GAME */
+/* ========================= */
 
-#aflScreen {
-  padding: 20px;
-}
-
-.afl-header {
-  max-width: 1400px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 5px 18px;
-  font-size: 20px;
-}
-
-.game-layout {
-  max-width: 1400px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: minmax(500px, 1fr) 330px;
-  gap: 25px;
-}
-
-.field-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-/* =========================
-   OVAL AFL FIELD
-========================= */
-
-#field {
+#gameScreen {
   position: relative;
-  width: min(850px, 100%);
-  aspect-ratio: 1.65 / 1;
-  border-radius: 50%;
-  overflow: hidden;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 3px,
-      transparent 3px,
-      transparent 30px
-    ),
-    linear-gradient(
-      90deg,
-      #116b35,
-      #168542,
-      #116b35
-    );
-
-  border: 8px solid #f2f2f2;
-
-  box-shadow:
-    inset 0 0 70px rgba(0,0,0,0.25),
-    0 25px 60px rgba(0,0,0,0.6);
+  background: #07100b;
 }
 
-#field::before {
-  content: "";
+.game-info {
+  height: 55px;
+
   position: absolute;
-  left: 50%;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background: rgba(255,255,255,0.8);
-  transform: translateX(-50%);
-}
 
-.centre-circle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 110px;
-  height: 110px;
-  border: 3px solid rgba(255,255,255,0.8);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
+  top: 10px;
+  left: 20px;
+  right: 20px;
 
-.goal-square {
-  position: absolute;
-  width: 80px;
-  height: 120px;
-  border: 2px solid white;
-}
+  z-index: 10;
 
-.goal-square.top {
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
-
-.goal-square.bottom {
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-}
-
-.goal-line {
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background: white;
-}
-
-.top-line {
-  top: 2%;
-}
-
-.bottom-line {
-  bottom: 2%;
-}
-
-
-/* =========================
-   PLAYERS
-========================= */
-
-.player {
-  position: absolute;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: center;
+
+  justify-content: space-between;
   align-items: center;
-  font-size: 7px;
-  font-weight: bold;
-  transition: box-shadow 0.1s;
-  z-index: 5;
-}
 
-.user-player {
+  padding: 10px 20px;
+
   background:
-    radial-gradient(circle at 35% 30%, #fff, #e7e7e7 20%, #1c74e8 23%, #063b99);
-  border: 3px solid white;
-  box-shadow: 0 0 20px rgba(40,130,255,0.8);
+    rgba(5, 15, 8, 0.8);
+
+  border:
+    1px solid #35533d;
+
+  border-radius: 12px;
+
+  pointer-events: none;
 }
 
-.defender {
-  background:
-    radial-gradient(circle at 35% 30%, #ff7777, #d51d1d 40%, #710000);
-  border: 3px solid white;
-  box-shadow: 0 0 12px rgba(255,40,40,0.6);
+#gameMessage {
+  color: #d5e5d9;
 }
 
-#ball {
+
+/* ========================= */
+/* THREE JS CANVAS */
+/* ========================= */
+
+#gameContainer {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+}
+
+
+/* ========================= */
+/* CONTROLS */
+/* ========================= */
+
+#controls {
   position: absolute;
-  width: 16px;
-  height: 23px;
-  border-radius: 50%;
-  background: #c77732;
-  border: 2px solid #5b2d0c;
-  transform: translate(-50%, -50%) rotate(-25deg);
-  z-index: 7;
-  transition: left 0.15s linear, top 0.15s linear;
+
+  left: 20px;
+  bottom: 20px;
+
+  width: 280px;
+
+  padding: 18px;
+
+  background:
+    rgba(4, 12, 7, 0.88);
+
+  border:
+    1px solid #36583e;
+
+  border-radius: 15px;
+
+  z-index: 10;
 }
 
-
-/* =========================
-   GAME PANEL
-========================= */
-
-.game-panel {
-  background: rgba(13, 21, 33, 0.96);
-  border: 1px solid #30435e;
-  border-radius: 18px;
-  padding: 25px;
-}
-
-.game-panel h2 {
-  margin-top: 0;
-}
-
-.game-panel p {
-  color: #b9c5d6;
-  line-height: 1.5;
-}
-
-.status {
-  margin: 20px 0;
-  padding: 15px;
-  border-radius: 10px;
-  background: #0a1320;
+.control-title {
   color: #55e37d;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.controls {
-  border-top: 1px solid #2d3b50;
-  margin-top: 20px;
-  padding-top: 15px;
-}
+#controls p {
+  margin: 8px 0;
 
-.controls h3 {
-  font-size: 14px;
+  color: #c2d1c6;
+
+  font-size: 13px;
 }
 
 kbd {
-  display: inline-block;
-  min-width: 32px;
-  padding: 4px 6px;
-  margin-right: 5px;
-  text-align: center;
-  background: #27364b;
+  background: #263a2b;
+
+  padding: 4px 7px;
+
   border-radius: 5px;
-  color: white;
-  font-weight: bold;
+
+  border: 1px solid #4b6752;
 }
 
-.mobile-controls {
+
+/* ========================= */
+/* RESULT */
+/* ========================= */
+
+#resultScreen {
   display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle,
+      #194b29,
+      #061008
+    );
 }
 
-
-/* =========================
-   RESULTS
-========================= */
+#resultScreen.active {
+  display: flex;
+}
 
 .result-card {
-  width: min(600px, 100%);
-  margin: 80px auto;
-  text-align: center;
+  width: min(600px, 90%);
+
   padding: 50px;
+
+  text-align: center;
+
+  background: #102117;
+
+  border:
+    1px solid #3d6747;
+
   border-radius: 20px;
-  background: #111c2b;
-  border: 1px solid #30435e;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.5);
 }
 
 .result-card h1 {
   color: #55e37d;
 }
 
+.result-card button {
+  margin-top: 25px;
 
-/* =========================
-   MOBILE
-========================= */
+  padding: 15px 25px;
 
-@media (max-width: 900px) {
+  background: #55e37d;
 
-  .game-layout {
-    grid-template-columns: 1fr;
-  }
+  border: none;
 
-  .game-panel {
-    width: 100%;
-  }
+  border-radius: 10px;
 
-  .controls {
-    display: none;
-  }
-
-  .mobile-controls {
-    display: block;
-    text-align: center;
-  }
-
-  .mobile-controls button {
-    margin: 4px;
-  }
-
-  #field {
-    width: 100%;
-  }
+  font-weight: bold;
 }
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
 
 @media (max-width: 700px) {
 
-  .multiple-choice {
-    grid-template-columns: 1fr;
+  .topbar {
+    height: 75px;
+    padding: 8px 12px;
   }
-}
 
-@media (max-width: 600px) {
+  .topbar h1 {
+    font-size: 15px;
+  }
 
-  header h1 {
-    font-size: 22px;
+  .topbar p {
+    font-size: 11px;
+  }
+
+  .scoreboard {
+    gap: 10px;
+  }
+
+  .scoreboard strong {
+    font-size: 18px;
+  }
+
+  .screen {
+    height: calc(100vh - 75px);
   }
 
   .quiz-card {
-    margin: 15px auto;
-    padding: 22px;
+    padding: 25px;
   }
 
   .quiz-card h2 {
     font-size: 20px;
   }
 
-  .screen {
-    padding: 15px;
+  .answers {
+    grid-template-columns: 1fr;
   }
 
-  #field {
-    border-width: 5px;
-  }
-
-  .player {
-    width: 30px;
-    height: 30px;
+  #controls {
+    width: 220px;
+    padding: 12px;
   }
 }
